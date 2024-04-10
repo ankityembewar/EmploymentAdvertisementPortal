@@ -1,0 +1,12 @@
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\bin\Debug\net7.0\EAP.ConfigurationManager.deps.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\bin\Debug\net7.0\EAP.ConfigurationManager.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\bin\Debug\net7.0\EAP.ConfigurationManager.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.AssemblyInfoInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.AssemblyInfo.cs
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.csproj.CoreCompileInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.sourcelink.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\refint\EAP.ConfigurationManager.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\EAP.ConfigurationManager.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ConfigurationManager\obj\Debug\net7.0\ref\EAP.ConfigurationManager.dll

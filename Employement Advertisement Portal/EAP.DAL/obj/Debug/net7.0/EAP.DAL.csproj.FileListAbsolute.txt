@@ -1,0 +1,12 @@
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.DAL.deps.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.DAL.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.DAL.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.AssemblyInfoInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.AssemblyInfo.cs
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.csproj.CoreCompileInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.sourcelink.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\refint\EAP.DAL.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\ref\EAP.DAL.dll
