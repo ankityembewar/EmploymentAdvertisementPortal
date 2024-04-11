@@ -13,7 +13,7 @@ public partial class UserLoginTbl
 
     public int CreatedBy { get; set; }
 
-    public string CreatedDate { get; set; } = null!;
+    public DateTime CreatedDate { get; set; }
 
     public int ModifiedBy { get; set; }
 

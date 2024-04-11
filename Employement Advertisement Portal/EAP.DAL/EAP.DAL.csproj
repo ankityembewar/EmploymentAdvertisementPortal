@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IService\" />
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\EAP.Core\EAP.Core.csproj" />
   </ItemGroup>
 
 </Project>

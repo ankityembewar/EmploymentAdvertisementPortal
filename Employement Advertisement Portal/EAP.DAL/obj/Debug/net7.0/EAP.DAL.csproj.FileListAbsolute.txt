@@ -10,3 +10,9 @@ D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\refint\EAP.DAL.dll
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.pdb
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\ref\EAP.DAL.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.Core.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.ViewModel.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.Core.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\bin\Debug\net7.0\EAP.ViewModel.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.csproj.AssemblyReference.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.DAL\obj\Debug\net7.0\EAP.DAL.csproj.CopyComplete

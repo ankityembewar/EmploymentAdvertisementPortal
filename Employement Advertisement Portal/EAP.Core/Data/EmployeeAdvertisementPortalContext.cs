@@ -26,6 +26,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
     public virtual DbSet<UserRoleTbl> UserRoleTbls { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AQJSKH\\MSSQLSERVER1;Initial Catalog=Employee_Advertisement_Portal;Trusted_Connection=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -110,9 +111,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
                 .HasNoKey()
                 .ToTable("UserLogin_tbl");
 
-            entity.Property(e => e.CreatedDate)
-                .HasMaxLength(20)
-                .IsUnicode(false);
+            entity.Property(e => e.CreatedDate).HasColumnType("date");
             entity.Property(e => e.Email)
                 .HasMaxLength(20)
                 .IsUnicode(false);

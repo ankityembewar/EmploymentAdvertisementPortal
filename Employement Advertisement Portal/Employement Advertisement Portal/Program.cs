@@ -1,4 +1,9 @@
+using EAP.BAL.Agent.Login;
+using EAP.BAL.IAgent.ILogin;
 using EAP.Core.Data;
+using EAP.Core.Mapper;
+using EAP.DAL.IService.ILoginService;
+using EAP.DAL.Service.LoginService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +14,15 @@ builder.Services.AddDbContext<EmployeeAdvertisementPortalContext>(options => opt
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Dependency Injection
+builder.Services.AddScoped<ILoginAgent, LoginAgent>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+#endregion
+
+#region Automapper
+builder.Services.AddAutoMapper(typeof(Mapper));
+#endregion
 
 var app = builder.Build();
 
@@ -25,6 +39,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=UserLogin}/{id?}");
 
 app.Run();

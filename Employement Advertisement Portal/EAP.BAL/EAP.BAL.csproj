@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Agent\" />
-    <Folder Include="IAgent\" />
+    <ProjectReference Include="..\EAP.Core\EAP.Core.csproj" />
+    <ProjectReference Include="..\EAP.DAL\EAP.DAL.csproj" />
+    <ProjectReference Include="..\EAP.ViewModel\EAP.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>
