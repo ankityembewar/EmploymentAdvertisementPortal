@@ -1,8 +1,12 @@
+using EAP.BAL.Agent.Employee;
 using EAP.BAL.Agent.Login;
+using EAP.BAL.IAgent.IEmployee;
 using EAP.BAL.IAgent.ILogin;
 using EAP.Core.Data;
 using EAP.Core.Mapper;
-using EAP.DAL.IService.ILoginService;
+using EAP.DAL.IService.Employee;
+using EAP.DAL.IService.Login;
+using EAP.DAL.Service.Employee;
 using EAP.DAL.Service.LoginService;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +22,9 @@ builder.Services.AddControllersWithViews();
 #region Dependency Injection
 builder.Services.AddScoped<ILoginAgent, LoginAgent>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IEmployeeAgent, EmployeeAgent>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddHttpContextAccessor();
 #endregion
 
 #region Automapper

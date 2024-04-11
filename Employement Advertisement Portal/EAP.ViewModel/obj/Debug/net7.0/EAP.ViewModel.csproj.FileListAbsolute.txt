@@ -1,6 +1,7 @@
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Debug\net7.0\EAP.ViewModel.deps.json
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Debug\net7.0\EAP.ViewModel.dll
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Debug\net7.0\EAP.ViewModel.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Debug\net7.0\EAP.ViewModel.csproj.AssemblyReference.cache
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Debug\net7.0\EAP.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Debug\net7.0\EAP.ViewModel.AssemblyInfoInputs.cache
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Debug\net7.0\EAP.ViewModel.AssemblyInfo.cs

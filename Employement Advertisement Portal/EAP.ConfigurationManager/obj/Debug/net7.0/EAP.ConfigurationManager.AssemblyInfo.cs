@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EAP.ConfigurationManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdd8f76583d55e53aefcc8671c96becc95c93a7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10ac9792de92c501420fa5d65c55f61bf536af3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("EAP.ConfigurationManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EAP.ConfigurationManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

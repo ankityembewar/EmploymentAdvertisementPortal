@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EAP.DAL.IService.ILoginService
+namespace EAP.DAL.IService.Login
 {
     public interface ILoginService
     {

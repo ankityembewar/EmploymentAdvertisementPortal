@@ -1,10 +1,5 @@
 ﻿using EAP.Core.Data;
-using EAP.DAL.IService.ILoginService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EAP.DAL.IService.Login;
 
 namespace EAP.DAL.Service.LoginService
 {
@@ -17,12 +12,15 @@ namespace EAP.DAL.Service.LoginService
             {
                 using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
                 {
-                    return context.UserLoginTbls.Any(x => x.Email == login.Email && x.Password == login.Password);
+                    if (context.UserLoginTbls.Any(x => x.Email == login.Email && x.Password == login.Password))
+                        return true;
+                    else
+                        throw new Exception("Invalid email or password.");
                 }
             }
             catch (Exception ex)
-            { 
-                throw new ApplicationException("An error occurred while validating credentials. Please try again later.", ex);
+            {
+                throw;
             }
 
         }

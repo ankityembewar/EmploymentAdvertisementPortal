@@ -20,3 +20,22 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* CSS for the fade-out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 5s forwards; /* Apply fade-out animation */
+}

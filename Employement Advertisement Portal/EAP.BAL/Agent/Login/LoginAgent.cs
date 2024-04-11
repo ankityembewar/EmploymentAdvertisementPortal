@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using EAP.BAL.IAgent.ILogin;
 using EAP.Core.Data;
-using EAP.DAL.IService.ILoginService;
+using EAP.DAL.IService.Login;
 using EAP.ViewModel;
 
 namespace EAP.BAL.Agent.Login
