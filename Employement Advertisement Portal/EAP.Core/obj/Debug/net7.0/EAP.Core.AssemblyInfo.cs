@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EAP.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4342d6105b212145b2f82d1073535a32ebe72a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cdd8f76583d55e53aefcc8671c96becc95c93a7f")]
 [assembly: System.Reflection.AssemblyProductAttribute("EAP.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EAP.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

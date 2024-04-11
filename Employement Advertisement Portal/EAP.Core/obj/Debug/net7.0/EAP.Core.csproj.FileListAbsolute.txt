@@ -1,6 +1,8 @@
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\bin\Debug\net7.0\EAP.Core.deps.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\bin\Debug\net7.0\EAP.Core.runtimeconfig.json
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\bin\Debug\net7.0\EAP.Core.dll
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\bin\Debug\net7.0\EAP.Core.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.csproj.AssemblyReference.cache
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.GeneratedMSBuildEditorConfig.editorconfig
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.AssemblyInfoInputs.cache
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.AssemblyInfo.cs
@@ -9,4 +11,5 @@ D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.dll
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\refint\EAP.Core.dll
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\EAP.Core.genruntimeconfig.cache
 D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.Core\obj\Debug\net7.0\ref\EAP.Core.dll
