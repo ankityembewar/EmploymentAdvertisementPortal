@@ -42,7 +42,9 @@ namespace EAP.BAL.Agent.Employee
 
         public List<EmployeeViewModel> GetEmployeeList()
         {
-            throw new NotImplementedException();
+            List<EmployeeDetailsTbl> employeesList = _employeeService.GetEmployeeList();
+            
+            return _mapper.Map<List<EmployeeViewModel>>(employeesList);
         }
 
         public IEnumerable<SelectListItem> GetEmployeeRoleOptions()

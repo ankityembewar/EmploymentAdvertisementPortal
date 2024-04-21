@@ -30,6 +30,8 @@ namespace EAP.Core.Mapper
                                                                       Text = src.Role.Role
                                                                     }
                                               }));
+
+            //CreateMap<List<EmployeeDetailsTbl>, List<EmployeeViewModel>>().ReverseMap();
         }
     }
 }

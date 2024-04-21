@@ -18,7 +18,7 @@ namespace EAP.DAL.Service.Employee
                 throw new ArgumentException("Email can't be null or empty", nameof(email));
             }
 
-            using (var context = new EmployeeAdvertisementPortalContext())
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
                 EmployeeDetailsTbl employee = context.EmployeeDetailsTbls.Include(e=>e.Role).FirstOrDefault(x => x.Email == email);
                 if (employee == null)
@@ -38,7 +38,10 @@ namespace EAP.DAL.Service.Employee
 
         public List<EmployeeDetailsTbl> GetEmployeeList()
         {
-            throw new NotImplementedException();
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                return context.EmployeeDetailsTbls.Include(e => e.Role).ToList();
+            }
         }
 
         public List<UserRoleTbl> GetEmployeeRoleOptions()

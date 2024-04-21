@@ -3,6 +3,7 @@ using EAP.BAL.IAgent.ILogin;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
@@ -35,17 +36,17 @@ namespace Employement_Advertisement_Portal.Controllers
         {
             try
             {
-                bool result = _loginAgent.IsValidCredential(login);
-                if (result)
-                {
-                    EmployeeViewModel employee = _employeeAgent.GetEmployeeByEmail(login.Email);
-                    SignInUser(employee.Email, employee.EmpId.ToString(), "Admin");
-                    return RedirectToAction("Index", "Home");
-                }
-                else
+                if (!_loginAgent.IsValidCredential(login))
                     return RedirectToAction("UserLogin", "Login");
+
+                EmployeeViewModel employee = _employeeAgent.GetEmployeeByEmail(login.Email);
+                if (employee == null || employee.EmployeeRole == null)
+                    return RedirectToAction("Index", "Home");
+
+                bool isAdmin = employee.EmployeeRole.Any(role => role.Text == "Admin");
+                return RedirectToAction(isAdmin ? "Index" : "Index", isAdmin ? "Admin" : "Home");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewData["ErrorMessage"] = ex.Message;
                 return View("UserLogin");
@@ -66,12 +67,12 @@ namespace Employement_Advertisement_Portal.Controllers
         #endregion
 
         #region Private Method
-        private void SignInUser(string email, string userId, string roleName)
+        private void SignInUser(string email, string empId, string roleName)
         {
             var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, email),
-            new Claim("UserId", userId),
+            new Claim("EmpId", empId),
             new Claim(ClaimTypes.Role, roleName)
         };
 

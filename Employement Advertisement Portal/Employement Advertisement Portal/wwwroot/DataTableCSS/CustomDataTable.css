@@ -1,0 +1,37 @@
+﻿body {
+    margin: 2em;
+}
+
+ul.dt-button-collection {
+    background-color: #e5e5e5;
+    border: 1px solid #c0c0c0;
+}
+
+li.dt-button a:hover {
+    background-color: transparent;
+    color: #115094;
+    font-weight: bold;
+}
+
+li.dt-button.active a,
+li.dt-button.active a:hover,
+li.dt-button.active a:focus {
+    color: #337ab6;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+    li.dt-button.active a::before {
+        content: '✔ ';
+    }
+
+.dataTables_info {
+    font-size: 0.8em;
+    margin-top: -12px;
+    text-align: right;
+}
+
+.previous a,
+.next a {
+    font-weight: bold;
+}
