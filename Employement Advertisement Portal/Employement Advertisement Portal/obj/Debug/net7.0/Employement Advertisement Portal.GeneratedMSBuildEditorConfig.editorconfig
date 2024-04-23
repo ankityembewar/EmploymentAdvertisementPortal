@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\PersonalProject\EAP\Employement Advertisement Portal\Employement Advertisement Portal
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/PersonalProject/EAP/Employement Advertisement Portal/Employement Advertisement Portal/Views/Admin/CreateEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/PersonalProject/EAP/Employement Advertisement Portal/Employement Advertisement Portal/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

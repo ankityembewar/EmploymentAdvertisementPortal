@@ -22,7 +22,6 @@
     // Attach the handleCheckboxChange function to the change event of .columnCheckbox elements
     $(document).on('click', '.columnCheckbox', handleCheckboxChange);
 });
-
 function GetEmployeeList(selectedChartType) {
     $.ajax({
         url: '/Admin/GetEmployeeList',
@@ -35,7 +34,6 @@ function GetEmployeeList(selectedChartType) {
 
     })
 }
-
 function OnSuccess(response) {
     if ($.fn.DataTable.isDataTable('#employeeTable')) {
         $('#employeeTable').DataTable().destroy();
@@ -158,7 +156,6 @@ function OnSuccess(response) {
 
     });
 }
-
 function handleCheckboxChange() {
     var columnIndex = $(this).data('column');
     var column = $('#employeeTable').DataTable().column(columnIndex);
@@ -172,8 +169,6 @@ function handleCheckboxChange() {
         column.visible($(this).is(':checked'));
     }
 }
-
-
 function showNotification(message, type = 'info') {
     // Create a notification element with the Bootstrap alert style based on the type
     var notification = document.createElement('div');
@@ -215,11 +210,6 @@ function showNotification(message, type = 'info') {
         notification.remove();
     }, 3000); // Remove after 3 seconds (adjust as needed)
 }
-
-
-
-
-
 function toggleDropdownAndGenerateItems() {
     $('#columnDropdownMenu').toggle(); // Toggle dropdown visibility
     generateDropdownItems(); // Generate dropdown items
@@ -240,11 +230,6 @@ function generateDropdownItems() {
         }
     });
 }
-
-
-
-
-
 function renderChart(response, selectedChart) {
     var rolesSet = new Set();
     response.forEach(function (employee) {
@@ -325,6 +310,52 @@ function renderChart(response, selectedChart) {
 
     Highcharts.chart('chartContainer', commonOptions);
 }
+
+// Function to handle editing an employee
+function editEmployee(empId) {
+    $('#employeeListView').remove();
+    // Send AJAX request to the server
+    $.ajax({
+        url: '/admin/editEmployee', 
+        type: 'GET', 
+        data: { empId: empId }, 
+        success: function (response) {
+            if (response) {
+                $('#editEmployeeView').html(response).removeClass('d-none');
+            }
+            else {
+                showNotification("An error occurred while loading the edit view.", "error");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading edit view:', error);
+            showNotification("An error occurred while loading the edit view.", "error");
+        }
+    });
+}
+
+// Function to handle deleting an employee
+function deleteEmployee(empId) {
+    // Send AJAX request to the server
+    $.ajax({
+        url: '/admin/deleteEmployee', 
+        type: 'POST', 
+        data: { empId: empId },
+        success: function (response) {
+            if (response.success) {
+                showNotification("Record delete successfully.", "success")
+            }
+            else {
+                showNotification("Failed to delete record", "error")
+            }
+            GetEmployeeList();
+        },
+        error: function (xhr, status, error) {
+            console.error('Error deleting employee:', error);
+        }
+    });
+}
+
 
 
 

@@ -8,6 +8,7 @@ using EAP.DAL.IService.Employee;
 using EAP.DAL.IService.Login;
 using EAP.DAL.Service.Employee;
 using EAP.DAL.Service.LoginService;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,16 @@ builder.Services.AddDbContext<EmployeeAdvertisementPortalContext>(options => opt
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+// Configure session options.
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".YourApp.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 #region Dependency Injection
 builder.Services.AddScoped<ILoginAgent, LoginAgent>();
@@ -31,6 +42,13 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Mapper));
 #endregion
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/login/userlogin"; // Set the login page path
+    });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,7 +60,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+// Use session middleware.
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

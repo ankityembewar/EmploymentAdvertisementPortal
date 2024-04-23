@@ -4,20 +4,23 @@
 @{
     ViewData["Title"] = "GetEmployeeList";
 }
-<link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+@* <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" /> *@
 <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
-<h1>Employee List</h1>
-
-
-<div class="container" style="margin-top: 80px;">
+<div id="employeeListView" class="container d-flex justify-content-center align-items-center" @* style="height: 100vh;" *@>
+<div class="card">
+    <div class="card-header">
+        <h4>Employee List</h4>
+    </div>
+    <div class="card-body">
+<div class="container" style="margin-top:30px;">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="table-responsive">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="columnDropdown" aria-haspopup="true" aria-expanded="false">
                         Show/Hide Columns
                     </button>
-                    <button class="btn btn-light ml-4" type="button" id="createemployee" style="margin-left: 20px;">
+                    <button class="btn btn-light ml-4" type="button" id="createemployee" style="margin-left: 20px;" onclick="location.href='@Url.Action("AddEmployee", "Admin")'">
                         Add New
                     </button>
 
@@ -39,7 +42,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="form-group">
                 <label for="chartType">Select Chart Type:</label>
                 <select id="chartType" class="form-control">
@@ -51,6 +54,18 @@
         </div>
         
     </div>
+</div>
+</div>
+        <div class="card-footer">
+            <div class="text-center">
+                <!-- No buttons or anchor tags -->
+            </div>
+        </div>
+</div>
+</div>
+
+<div id="editEmployeeView" class="container d-none">
+    <!-- The edit view content will be rendered here -->
 </div>
 
 @section scripts {

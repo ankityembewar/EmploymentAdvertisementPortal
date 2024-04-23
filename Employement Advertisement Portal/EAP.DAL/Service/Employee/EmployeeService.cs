@@ -33,7 +33,10 @@ namespace EAP.DAL.Service.Employee
 
         public EmployeeDetailsTbl GetEmployeeInfo(int empId)
         {
-            throw new NotImplementedException();
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                return context.EmployeeDetailsTbls.Include(e=>e.Role).FirstOrDefault(x => x.EmpId == empId);
+            }
         }
 
         public List<EmployeeDetailsTbl> GetEmployeeList()
@@ -46,7 +49,10 @@ namespace EAP.DAL.Service.Employee
 
         public List<UserRoleTbl> GetEmployeeRoleOptions()
         {
-            throw new NotImplementedException();
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                return context.UserRoleTbls.ToList();
+            }
         }
 
         public bool IsDuplicateEmail(string email)
@@ -61,8 +67,36 @@ namespace EAP.DAL.Service.Employee
 
         public bool IsEmployeeDeleted(int empId)
         {
-            throw new NotImplementedException();
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                // Retrieve the employee from the database
+                EmployeeDetailsTbl employeeToDelete = context.EmployeeDetailsTbls.FirstOrDefault(x => x.EmpId == empId);
+
+                if (employeeToDelete != null)
+                {
+                    // Remove related records from UserLogin_tbl
+                    var relatedLogins = context.UserLoginTbls.Where(login => login.EmpId == empId);
+                    context.UserLoginTbls.RemoveRange(relatedLogins);
+
+                    // Remove related records from AdvertisementDetails_tbl
+                    var relatedAds = context.AdvertisementDetailsTbls.Where(ad => ad.EmpId == empId);
+                    context.AdvertisementDetailsTbls.RemoveRange(relatedAds);
+
+                    // Remove the employee from the context
+                    context.EmployeeDetailsTbls.Remove(employeeToDelete);
+
+                    // Save changes to persist the deletion
+                    context.SaveChanges();
+
+                    return true; // Employee successfully deleted
+                }
+
+                return false; // Employee not found or deletion failed
+            }
         }
+
+
+
 
         public bool UpdateEmployeeInfo(EmployeeDetailsTbl employee)
         {

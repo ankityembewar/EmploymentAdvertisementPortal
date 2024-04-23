@@ -3,7 +3,6 @@ using EAP.BAL.IAgent.ILogin;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
@@ -28,7 +27,7 @@ namespace Employement_Advertisement_Portal.Controllers
         #region Login
         public ActionResult UserLogin()
         {
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
@@ -44,6 +43,7 @@ namespace Employement_Advertisement_Portal.Controllers
                     return RedirectToAction("Index", "Home");
 
                 bool isAdmin = employee.EmployeeRole.Any(role => role.Text == "Admin");
+                SignInUser(login.Email, employee.EmpId.ToString(), employee.EmployeeRole.Select(x => x.Text).First());
                 return RedirectToAction(isAdmin ? "Index" : "Index", isAdmin ? "Admin" : "Home");
             }
             catch (Exception ex)
@@ -69,15 +69,15 @@ namespace Employement_Advertisement_Portal.Controllers
         #region Private Method
         private void SignInUser(string email, string empId, string roleName)
         {
-            var claims = new List<Claim>
+            List<Claim> claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, email),
             new Claim("EmpId", empId),
             new Claim(ClaimTypes.Role, roleName)
         };
 
-            var userIdentity = new ClaimsIdentity(claims, "login");
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
+            ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
+            ClaimsPrincipal userPrincipal = new ClaimsPrincipal(userIdentity);
 
             HttpContext.SignInAsync(userPrincipal, new AuthenticationProperties
             {

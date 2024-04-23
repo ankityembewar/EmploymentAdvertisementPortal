@@ -4,6 +4,7 @@ using EAP.Core.Data;
 using EAP.DAL.IService.Employee;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EAP.BAL.Agent.Employee
 {
@@ -37,7 +38,8 @@ namespace EAP.BAL.Agent.Employee
 
         public EmployeeViewModel GetEmployeeInfo(int empId)
         {
-            throw new NotImplementedException();
+            EmployeeDetailsTbl employeeDetails = _employeeService.GetEmployeeInfo(empId);
+            return _mapper.Map<EmployeeViewModel>(employeeDetails);
         }
 
         public List<EmployeeViewModel> GetEmployeeList()
@@ -49,7 +51,12 @@ namespace EAP.BAL.Agent.Employee
 
         public IEnumerable<SelectListItem> GetEmployeeRoleOptions()
         {
-            throw new NotImplementedException();
+            return _employeeService.GetEmployeeRoleOptions()
+                           .Select(role => new SelectListItem
+                           {
+                               Value = role.RoleId.ToString(),
+                               Text = role.Role
+                           });
         }
 
         public bool IsDuplicateEmail(string email)
@@ -64,7 +71,7 @@ namespace EAP.BAL.Agent.Employee
 
         public bool IsEmployeeDeleted(int empId)
         {
-            throw new NotImplementedException();
+            return _employeeService.IsEmployeeDeleted(empId);
         }
 
         public bool UpdateEmployeeInfo(EmployeeViewModel employee)

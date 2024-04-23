@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace EAP.ViewModel
 
         public string Email { get; set; } = null!;
 
-        public string Gender { get; set; } = null!;
+        public Gender Gender { get; set; }
 
         public DateTime Dob { get; set; }
 
@@ -34,5 +35,11 @@ namespace EAP.ViewModel
         public DateTime ModifiedDate { get; set; }
 
         public IEnumerable<SelectListItem> EmployeeRole { get; set; }
+    }
+
+    public enum Gender
+    {
+        MALE,
+        FEMALE
     }
 }
