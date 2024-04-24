@@ -113,6 +113,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\datatable.js",
       "PackagePath": "staticwebassets\\js\\datatable.js"
     },

@@ -3,6 +3,7 @@ using EAP.BAL.Agent.Login;
 using EAP.BAL.IAgent.IEmployee;
 using EAP.BAL.IAgent.ILogin;
 using EAP.Core.Data;
+using EAP.Core.HelperUtilities;
 using EAP.Core.Mapper;
 using EAP.DAL.IService.Employee;
 using EAP.DAL.IService.Login;
@@ -35,6 +36,8 @@ builder.Services.AddScoped<ILoginAgent, LoginAgent>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IEmployeeAgent, EmployeeAgent>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<HelperUtility>();
+
 builder.Services.AddHttpContextAccessor();
 #endregion
 
@@ -68,6 +71,6 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=UserLogin}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

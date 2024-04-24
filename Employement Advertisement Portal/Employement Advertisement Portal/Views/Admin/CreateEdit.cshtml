@@ -7,10 +7,10 @@
 <div class="container d-flex justify-content-center align-items-center" @* style="height: 100vh;" *@>
 <div class="card" style="width: 70%;">
     <div class="card-header">
-        <h5>Add Employee</h5>
+            <h5>@(Model.EmpId == 0 ? "Add Employee" : "Update Employee Details")</h5>
     </div>
     <div class="card-body">
-        <form asp-action="CreateEdit" id="createEditForm">
+            <form id="createEditForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="col-md-6">
@@ -62,12 +62,18 @@
                     </div>
                 </div>
             </div>
+            @Html.HiddenFor(x=>x.EmployeeRole)
+            @Html.HiddenFor(x => x.EmpId)
+            @Html.HiddenFor(x => x.CreatedBy)
+            @Html.HiddenFor(x => x.CreatedDate)
+            @Html.HiddenFor(x => x.ModifiedDate)
+            @Html.HiddenFor(x => x.ModifiedBy)
         </form>
     </div>
     <div class="card-footer">
         <div class="text-center">
             <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
-            <button type="submit" form="createEditForm" class="btn btn-success">Create</button>
+                <button type="submit" onclick="submitEmployeeForm()" form="createEditForm" class="btn btn-success">Save</button>
         </div>
     </div>
 </div>
@@ -76,5 +82,6 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/js/admin.js"></script>
     }
 }

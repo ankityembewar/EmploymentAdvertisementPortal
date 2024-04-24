@@ -1,4 +1,5 @@
 ﻿using EAP.Core.Data;
+using EAP.Core.HelperUtilities;
 using EAP.DAL.IService.Employee;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,15 @@ namespace EAP.DAL.Service.Employee
 {
     public class EmployeeService : IEmployeeService
     {
+        #region Private Variables
+        private readonly HelperUtility _helperUtility;
+        #endregion
+
+        public EmployeeService(HelperUtility helperUtility)
+        {
+            _helperUtility = helperUtility;
+        }
+
         public EmployeeDetailsTbl GetEmployeeByEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -62,7 +72,21 @@ namespace EAP.DAL.Service.Employee
 
         public bool IsEmployeeAdded(EmployeeDetailsTbl employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+                {
+                    _helperUtility.MapAuditFields(employee, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
+                    context.EmployeeDetailsTbls.Add(employee);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         public bool IsEmployeeDeleted(int empId)
@@ -100,7 +124,21 @@ namespace EAP.DAL.Service.Employee
 
         public bool UpdateEmployeeInfo(EmployeeDetailsTbl employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+                {
+                    _helperUtility.MapAuditFields(employee, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", true);
+                    context.Entry(employee).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+            
         }
     }
 }

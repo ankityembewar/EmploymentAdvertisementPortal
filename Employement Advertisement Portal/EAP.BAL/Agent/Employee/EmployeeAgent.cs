@@ -66,7 +66,8 @@ namespace EAP.BAL.Agent.Employee
 
         public bool IsEmployeeAdded(EmployeeViewModel employee)
         {
-            throw new NotImplementedException();
+            EmployeeDetailsTbl employeeDetails = _mapper.Map<EmployeeDetailsTbl>(employee);
+            return _employeeService.IsEmployeeAdded(employeeDetails);
         }
 
         public bool IsEmployeeDeleted(int empId)
@@ -76,7 +77,8 @@ namespace EAP.BAL.Agent.Employee
 
         public bool UpdateEmployeeInfo(EmployeeViewModel employee)
         {
-            throw new NotImplementedException();
+            EmployeeDetailsTbl employeeDetails = _mapper.Map<EmployeeDetailsTbl>(employee);
+            return _employeeService.UpdateEmployeeInfo(employeeDetails);
         }
         #endregion 
     }

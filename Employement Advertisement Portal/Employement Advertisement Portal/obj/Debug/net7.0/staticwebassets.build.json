@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "duS5K7Ltem33nVwkX7G5fRb3x37aYvAXLaA1+znSlCE=",
+  "Hash": "hPPv+yzSn4NcuRng6f81Zk5rVMODWMOoIyQmlTsx+DU=",
   "Source": "Employement Advertisement Portal",
   "BasePath": "_content/Employement Advertisement Portal",
   "Mode": "Default",
@@ -566,6 +566,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\admin.js",
+      "SourceId": "Employement Advertisement Portal",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\",
+      "BasePath": "_content/Employement Advertisement Portal",
+      "RelativePath": "js/admin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\datatable.js",

@@ -3,6 +3,7 @@ using EAP.BAL.IAgent.ILogin;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
