@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EAP.ViewModel.AdvertisementViewModel>
+
+@{
+    ViewData["Title"] = "Advertisements";
+}
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">@item.Title</h5>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="@item.MediaPath" class="card-img" alt="@item.Title">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text">Location: @item.Location</p>
+                        <p class="card-text">Category: Rent</p>
+                        <p class="card-text"><small class="text-muted">Posted By: @item.PostedBy | Posted Date: @item.PostedDate</small></p>
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

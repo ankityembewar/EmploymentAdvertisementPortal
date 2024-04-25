@@ -45,7 +45,7 @@ namespace Employement_Advertisement_Portal.Controllers
 
                 bool isAdmin = employee.EmployeeRole.Any(role => role.Text == "Admin");
                 SignInUser(login.Email, employee.EmpId.ToString(), employee.EmployeeRole.Select(x => x.Text).First());
-                return RedirectToAction(isAdmin ? "Index" : "Index", isAdmin ? "Admin" : "Home");
+                return RedirectToAction(isAdmin ? "Index" : "List", isAdmin ? "Admin" : "Advertisement");
             }
             catch (Exception ex)
             {

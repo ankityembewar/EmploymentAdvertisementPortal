@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -14,6 +14,11 @@
     <ProjectReference Include="..\EAP.Core\EAP.Core.csproj" />
     <ProjectReference Include="..\EAP.DAL\EAP.DAL.csproj" />
     <ProjectReference Include="..\EAP.ViewModel\EAP.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Agent\Advertisement\" />
+    <Folder Include="IAgent\IAdvertisement\" />
   </ItemGroup>
 
 </Project>
