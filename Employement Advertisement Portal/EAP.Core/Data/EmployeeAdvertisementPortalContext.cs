@@ -60,16 +60,6 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
             entity.Property(e => e.Title)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.AdvCategory).WithMany(p => p.AdvertisementDetailsTbls)
-                .HasForeignKey(d => d.AdvCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_AdvertisementDetails_tbl_AdvertisementCategory_tbl");
-
-            entity.HasOne(d => d.Emp).WithMany(p => p.AdvertisementDetailsTbls)
-                .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_AdvertisementDetails_tbl_EmployeeDetails_tbl");
         });
 
         modelBuilder.Entity<EmployeeDetailsTbl>(entity =>
@@ -107,9 +97,9 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
 
         modelBuilder.Entity<UserLoginTbl>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("UserLogin_tbl");
+            entity.HasKey(e => e.Id).HasName("PK_UserLogin_tbl_1");
+
+            entity.ToTable("UserLogin_tbl");
 
             entity.Property(e => e.CreatedDate).HasColumnType("date");
             entity.Property(e => e.Email)
@@ -119,11 +109,6 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
             entity.Property(e => e.Password)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.Emp).WithMany()
-                .HasForeignKey(d => d.EmpId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_UserLogin_tbl_EmployeeDetails_tbl");
         });
 
         modelBuilder.Entity<UserRoleTbl>(entity =>

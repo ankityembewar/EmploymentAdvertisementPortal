@@ -70,24 +70,40 @@ namespace EAP.DAL.Service.Employee
             throw new NotImplementedException();
         }
 
-        public bool IsEmployeeAdded(EmployeeDetailsTbl employee)
+        public bool IsEmployeeAdded(EmployeeDetailsTbl employee, string password)
         {
             try
             {
                 using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
                 {
+                    // Map audit fields for employee
                     _helperUtility.MapAuditFields(employee, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
+
+                    // Create user login
+                    UserLoginTbl userLogin = new UserLoginTbl
+                    {
+                        Password = password,
+                        Email = employee.Email
+                    };
+                    _helperUtility.MapAuditFields(userLogin, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
+
+                    // Add employee and user login to context
                     context.EmployeeDetailsTbls.Add(employee);
+                    context.UserLoginTbls.Add(userLogin);
+
+                    // Save changes to commit both employee and user login
                     context.SaveChanges();
+
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw;
+                // Log the exception or handle it appropriately
+                throw new InvalidOperationException(ex.Message);
             }
-            
         }
+
 
         public bool IsEmployeeDeleted(int empId)
         {
@@ -98,13 +114,9 @@ namespace EAP.DAL.Service.Employee
 
                 if (employeeToDelete != null)
                 {
-                    // Remove related records from UserLogin_tbl
-                    var relatedLogins = context.UserLoginTbls.Where(login => login.EmpId == empId);
-                    context.UserLoginTbls.RemoveRange(relatedLogins);
-
                     // Remove related records from AdvertisementDetails_tbl
-                    var relatedAds = context.AdvertisementDetailsTbls.Where(ad => ad.EmpId == empId);
-                    context.AdvertisementDetailsTbls.RemoveRange(relatedAds);
+                    //var relatedAds = context.AdvertisementDetailsTbls.Where(ad => ad.EmpId == empId);
+                    //context.AdvertisementDetailsTbls.RemoveRange(relatedAds);
 
                     // Remove the employee from the context
                     context.EmployeeDetailsTbls.Remove(employeeToDelete);

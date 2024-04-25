@@ -67,7 +67,7 @@ namespace EAP.BAL.Agent.Employee
         public bool IsEmployeeAdded(EmployeeViewModel employee)
         {
             EmployeeDetailsTbl employeeDetails = _mapper.Map<EmployeeDetailsTbl>(employee);
-            return _employeeService.IsEmployeeAdded(employeeDetails);
+            return _employeeService.IsEmployeeAdded(employeeDetails,employee.Password);
         }
 
         public bool IsEmployeeDeleted(int empId)

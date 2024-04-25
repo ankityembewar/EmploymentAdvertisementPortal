@@ -35,6 +35,8 @@ namespace EAP.ViewModel
         public DateTime ModifiedDate { get; set; }
 
         public IEnumerable<SelectListItem> EmployeeRole { get; set; }
+
+        public string Password { get; set; }
     }
 
     public enum Gender

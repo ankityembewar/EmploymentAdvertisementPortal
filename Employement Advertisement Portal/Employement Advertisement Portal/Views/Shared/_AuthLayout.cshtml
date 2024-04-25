@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-
 @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
 {
     <div id="errorMessage" class="alert alert-danger fade-out text-center">
@@ -13,7 +12,6 @@
     </div>
     ViewData["ErrorMessage"] = string.Empty;
 }
-
 <div class="row justify-content-center">
     <div class="col-5 mt-5">
         <div class="card login-logout-card">

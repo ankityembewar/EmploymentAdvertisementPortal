@@ -66,8 +66,8 @@ namespace Employement_Advertisement_Portal.Controllers
             }
             catch (Exception ex)
             {
-                // Log any unexpected exceptions and set a generic error message
-                ModelState.AddModelError("", ex.Message);
+                ViewData["ErrorMessage"] = ex.Message;
+                return View("CreateEdit", employeeViewModel);
             }
 
             // If any error occurred during the process, return the view with error messages

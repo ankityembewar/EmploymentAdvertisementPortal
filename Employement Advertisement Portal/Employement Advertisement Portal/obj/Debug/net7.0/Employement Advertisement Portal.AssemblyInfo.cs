@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Employement Advertisement Portal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0236d81b5e0f26e134485c3b377436c05d24fc5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b60351f3420c8d6f8dac2986e3901f344bef6b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Employement Advertisement Portal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Employement Advertisement Portal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

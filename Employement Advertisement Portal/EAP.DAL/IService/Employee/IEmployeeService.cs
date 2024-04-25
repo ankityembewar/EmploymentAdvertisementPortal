@@ -21,7 +21,7 @@ namespace EAP.DAL.IService.Employee
         /// </summary>
         /// <param name="employee">The employee view model to check.</param>
         /// <returns>True if the employee has been successfully added, otherwise false.</returns>
-        bool IsEmployeeAdded(EmployeeDetailsTbl employee);
+        bool IsEmployeeAdded(EmployeeDetailsTbl employee, string password);
 
         /// <summary>
         /// Fetches detailed information about an employee based on their unique employee ID.
