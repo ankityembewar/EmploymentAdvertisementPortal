@@ -42,7 +42,7 @@
                             <span asp-validation-for="MediaPath" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="AdvCategoryId" class="control-label"></label>
+                            <label asp-for="AdvCategoryId" class="control-label">Category</label>
                             @Html.DropDownListFor(model => model.AdvCategoryId, new SelectList(Model.AdvertisementCategoryList, "Value", "Text"), "-- Select Role --", new { @class = "form-control" })
                             <span asp-validation-for="AdvCategoryId" class="text-danger"></span>
                         </div>

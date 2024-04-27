@@ -1,5 +1,4 @@
 ﻿using EAP.BAL.IAgent.IAdvertisement;
-using EAP.BAL.IAgent.IEmployee;
 using EAP.Core.HelperUtilities;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Mvc;

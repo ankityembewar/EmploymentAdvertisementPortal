@@ -33,7 +33,7 @@ namespace Employement_Advertisement_Portal.Controllers
                 }
                       
             }
-            return RedirectToAction("UserLogin","Login");
+            return View();
 
 
         }

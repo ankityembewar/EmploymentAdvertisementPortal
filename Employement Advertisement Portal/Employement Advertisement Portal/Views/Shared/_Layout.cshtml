@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    // Get the current user's role claim
+    var userRoleClaim = HttpContextAccessor.HttpContext?.User?.FindFirst(System.Security.Claims.ClaimTypes.Role);
+
+    // Extract the claimed role value (if present)
+    string claimedRole = userRoleClaim?.Value;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,7 +34,7 @@
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border: 1px solid #ddd; border-radius: 5px;">
                         <!-- Dropdown items -->
-                        @if (ViewBag.Role == "Admin")
+                        @if (claimedRole == "Admin")
                         {
                             <li><a class="dropdown-item" href="/admin/index">Employee List</a></li>
                         }

@@ -3,8 +3,6 @@ using EAP.Core.HelperUtilities;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
 {
