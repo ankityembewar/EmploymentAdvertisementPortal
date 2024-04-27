@@ -31,6 +31,16 @@ namespace EAP.Core.Mapper
                                                                     }
                                               }));
 
+            CreateMap<AdvertisementDetailsTbl, AdvertisementViewModel>()
+                .ForMember(dest => dest.AdvertisementCategoryList, opt => opt.MapFrom(src =>
+                    new List<SelectListItem> {
+                                                new SelectListItem {
+                                                                      Value = src.AdvCategory.AdvCategoryId.ToString(),
+                                                                      Text = src.AdvCategory.Category
+                                                                    }
+                                              }))
+                .ForMember(dest => dest.EmployeeDetail, opt => opt.MapFrom(src => src.Emp));
+
             //CreateMap<List<EmployeeDetailsTbl>, List<EmployeeViewModel>>().ReverseMap();
         }
     }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +14,15 @@ namespace EAP.ViewModel
 
         public int EmpId { get; set; }
 
-        public string Title { get; set; } = null!;
+        [StringLength(20, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string Title { get; set; }
 
+        [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Description { get; set; } = null!;
 
         public int Price { get; set; }
 
         public int PostedBy { get; set; }
-
-        public DateTime PostedDate { get; set; }
 
         public int CreatedBy { get; set; }
 
@@ -39,5 +41,9 @@ namespace EAP.ViewModel
         public bool IsRejected { get; set; }
 
         public string? MediaPath { get; set; }
+
+        public IEnumerable<SelectListItem> AdvertisementCategoryList { get; set; }
+
+        public EmployeeViewModel EmployeeDetail{ get; set; }
     }
 }

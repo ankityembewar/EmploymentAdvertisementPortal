@@ -1,39 +1,46 @@
-﻿using EAP.ViewModel;
+﻿using EAP.BAL.IAgent.IAdvertisement;
+using EAP.BAL.IAgent.IEmployee;
+using EAP.Core.HelperUtilities;
+using EAP.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employement_Advertisement_Portal.Controllers
 {
     public class AdvertisementController : Controller
     {
+        #region Private Variables
+        private readonly HelperUtility _helperUtility;
+        private readonly IAdvertisementAgent _advertiseAgent;
+        #endregion
+
+        #region Constructor
+        public AdvertisementController(IAdvertisementAgent advertiseAgent, HelperUtility helperUtility)
+        {
+            _advertiseAgent = advertiseAgent;
+            _helperUtility = helperUtility;
+        }
+        #endregion
         public IActionResult List()
         {
-            // Create sample data
-            var advertisements = new List<AdvertisementViewModel>
-        {
-            new AdvertisementViewModel
-            {
-                AdvId = 1,
-                Title = "Sample Advertisement 1",
-                Description = "Description for sample advertisement 1",
-                Price = 100,
-                Location = "Sample Location 1",
-                MediaPath = "/images/advertisement1.jpg" // Provide the path to the image
-                // Add other properties as needed
-            },
-            new AdvertisementViewModel
-            {
-                AdvId = 2,
-                Title = "Sample Advertisement 2",
-                Description = "Description for sample advertisement 2",
-                Price = 200,
-                Location = "Sample Location 2",
-                MediaPath = "/images/advertisement2.jpg" // Provide the path to the image
-                // Add other properties as needed
-            },
-            // Add more sample data as needed
-        };
-
+            List<AdvertisementViewModel> advertisements = _advertiseAgent.GetAdvertisementList();
             return View(advertisements);
+
         }
+
+        public ActionResult Create()
+        {
+            AdvertisementViewModel advertisement = new AdvertisementViewModel();
+            advertisement.AdvertisementCategoryList = _advertiseAgent.GetAdvertisementCategoryOptions();
+            return View("CreateEdit", advertisement);
+        }
+
+        [HttpPost]
+        public ActionResult Create(AdvertisementViewModel advertisement, IFormFile imageFile)
+        {
+            advertisement.MediaPath = _helperUtility.SaveImage(imageFile);
+            _advertiseAgent.IsAdvertisementCreated(advertisement);
+            return RedirectToAction("List");
+        }
+
     }
 }

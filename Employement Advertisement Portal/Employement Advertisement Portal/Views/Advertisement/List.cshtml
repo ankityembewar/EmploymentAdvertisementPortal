@@ -2,29 +2,80 @@
 
 @{
     ViewData["Title"] = "Advertisements";
+
+    string location = ViewBag.LocationFilter ?? "";
+    string category = ViewBag.CategoryFilter ?? "";
 }
 
 <div class="container">
-    @foreach (var item in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                <h5 class="card-title">@item.Title</h5>
+    <h2>@ViewData["Title"]</h2>
+
+    <form id="search-form">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <!-- Replace the select element with an input element -->
+                <input type="text" placeholder="Location" class="form-control" id="location" name="location">
             </div>
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                    <img src="@item.MediaPath" class="card-img" alt="@item.Title">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <p class="card-text">@item.Description</p>
-                        <p class="card-text">Location: @item.Location</p>
-                        <p class="card-text">Category: Rent</p>
-                        <p class="card-text"><small class="text-muted">Posted By: @item.PostedBy | Posted Date: @item.PostedDate</small></p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <select class="form-control" id="category" name="category">
+                    <option value="">Category</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Service">Service</option>
+                    <!-- Add more categories as needed -->
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12">
+                <button type="submit" class="btn btn-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
             </div>
         </div>
+    </form>
+
+
+    <hr />
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="@Url.Content(item.MediaPath)" class="card-img-top" alt="@item.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Location: @item.Location</li>
+                            <li class="list-group-item">
+                                Category: @item.AdvertisementCategoryList.First().Text
+                                <!-- Add a space and the price next to the category -->
+                                <span class="price"> | Price: ₹@item.Price</span>
+                            </li>
+                        </ul>
+                        <div class="card-footer text-muted">
+                            Posted By: @item.EmployeeDetail.Email | Posted Date:@item.CreatedDate.ToString("dd/MM/yyyy")
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            No advertisements found.
+        </div>
+    }
+    <!-- Placeholder for loading more advertisements -->
+    <div id="loading-placeholder"></div>
 </div>

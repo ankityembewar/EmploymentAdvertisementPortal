@@ -2,16 +2,20 @@
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
+using EAP.ViewModel;
 
 namespace EAP.Core.HelperUtilities
 {
     public class HelperUtility
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHostingEnvironment _environment;
 
-        public HelperUtility(IHttpContextAccessor httpContextAccessor)
+        public HelperUtility(IHttpContextAccessor httpContextAccessor, IHostingEnvironment environment)
         {
             _httpContextAccessor = httpContextAccessor;
+            _environment = environment;
         }
 
         public int GetEmployeeId()
@@ -84,6 +88,54 @@ namespace EAP.Core.HelperUtilities
             {
                 throw new ArgumentException($"Property '{propertyName}' not found or not writable in type '{typeof(T).Name}'.");
             }
+        }
+
+        public string SaveImage(IFormFile imageFile)
+        {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                // Generate a unique file name to avoid conflicts
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                var filePath = "Image/Advertisement/" + fileName;
+                var fullPath = Path.Combine(_environment.WebRootPath, filePath);
+
+                // Ensure the directory exists
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+                // Save the uploaded image to the specified path
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    imageFile.CopyTo(fileStream);
+                }
+
+                // Construct the relative URL of the uploaded image
+                var relativeUrl = "/" + filePath.Replace('\\', '/'); // Assuming images are served from the root directory
+
+                return relativeUrl;
+            }
+            return "";
+        }
+
+        public bool IsUserAuthorizedToEdit(int loginUserId, string userRole, EmployeeViewModel employee)
+        {
+            // Check if the user has an admin role
+            if (string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            // Check if the user is an employee editing their own record
+            if (loginUserId == employee?.EmpId && employee?.EmployeeRole?.Any()!=null)
+            {
+                string employeeRole = employee.EmployeeRole.First().Text;
+                if (string.Equals(userRole, employeeRole, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            // User is not authorized
+            return false;
         }
     }
 }

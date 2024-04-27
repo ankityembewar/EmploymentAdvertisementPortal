@@ -10,9 +10,4 @@
     <ProjectReference Include="..\EAP.Core\EAP.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IService\IAdvertisement\" />
-    <Folder Include="Service\Advertisement\" />
-  </ItemGroup>
-
 </Project>

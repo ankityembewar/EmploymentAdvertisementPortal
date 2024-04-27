@@ -25,7 +25,10 @@
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border: 1px solid #ddd; border-radius: 5px;">
                         <!-- Dropdown items -->
-                        <li><a class="dropdown-item" href="/admin/index">Employee List</a></li>
+                        @if (ViewBag.Role == "Admin")
+                        {
+                            <li><a class="dropdown-item" href="/admin/index">Employee List</a></li>
+                        }
                         <li><a class="dropdown-item" href="/admin/EditEmployee/">Profile</a></li>
                     </ul>
                 </div>

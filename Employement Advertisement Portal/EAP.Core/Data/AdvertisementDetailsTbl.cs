@@ -15,10 +15,6 @@ public partial class AdvertisementDetailsTbl
 
     public int Price { get; set; }
 
-    public int PostedBy { get; set; }
-
-    public DateTime PostedDate { get; set; }
-
     public int CreatedBy { get; set; }
 
     public DateTime CreatedDate { get; set; }
@@ -35,5 +31,9 @@ public partial class AdvertisementDetailsTbl
 
     public bool IsRejected { get; set; }
 
-    public string? MediaPath { get; set; }
+    public string MediaPath { get; set; } = null!;
+
+    public virtual AdvertisementCategoryTbl AdvCategory { get; set; } = null!;
+
+    public virtual EmployeeDetailsTbl Emp { get; set; } = null!;
 }

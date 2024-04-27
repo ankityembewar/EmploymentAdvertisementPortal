@@ -16,9 +16,4 @@
     <ProjectReference Include="..\EAP.ViewModel\EAP.ViewModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Agent\Advertisement\" />
-    <Folder Include="IAgent\IAdvertisement\" />
-  </ItemGroup>
-
 </Project>

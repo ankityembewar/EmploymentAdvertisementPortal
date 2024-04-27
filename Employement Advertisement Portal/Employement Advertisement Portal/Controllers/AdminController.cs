@@ -4,10 +4,11 @@ using EAP.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
 
@@ -25,17 +26,18 @@ namespace Employement_Advertisement_Portal.Controllers
         #endregion
 
         #region Method
-
+        
         public ActionResult Index()
         {
             return View();
         }
+        
         public ActionResult GetEmployeeList()
         {
             List<EmployeeViewModel> employeesList = _employeeAgent.GetEmployeeList();
             return new JsonResult(employeesList);
         }
-
+        
         public ActionResult AddEmployee()
         {
             EmployeeViewModel employeeViewModel = new EmployeeViewModel();
@@ -44,7 +46,10 @@ namespace Employement_Advertisement_Portal.Controllers
             return View("CreateEdit", employeeViewModel);
         }
 
+        
         [HttpPost]
+
+        
         public ActionResult AddEmployee(EmployeeViewModel employeeViewModel)
         {
             if (!ModelState.IsValid)
@@ -73,7 +78,6 @@ namespace Employement_Advertisement_Portal.Controllers
             // If any error occurred during the process, return the view with error messages
             return View("Index");
         }
-
 
         public ActionResult EditEmployee(int empId)
         {
@@ -112,6 +116,7 @@ namespace Employement_Advertisement_Portal.Controllers
             return View("Index");
         }
 
+        
         [HttpPost]
         public ActionResult DeleteEmployee(int empId)
         {

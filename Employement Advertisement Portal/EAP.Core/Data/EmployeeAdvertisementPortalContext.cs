@@ -50,16 +50,25 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
 
             entity.Property(e => e.CreatedDate).HasColumnType("date");
             entity.Property(e => e.Description)
-                .HasMaxLength(50)
+                .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Location)
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.ModifiedDate).HasColumnType("date");
-            entity.Property(e => e.PostedDate).HasColumnType("date");
             entity.Property(e => e.Title)
-                .HasMaxLength(20)
+                .HasMaxLength(80)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.AdvCategory).WithMany(p => p.AdvertisementDetailsTbls)
+                .HasForeignKey(d => d.AdvCategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AdvertisementDetails_tbl_AdvertisementCategory_tbl");
+
+            entity.HasOne(d => d.Emp).WithMany(p => p.AdvertisementDetailsTbls)
+                .HasForeignKey(d => d.EmpId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AdvertisementDetails_tbl_EmployeeDetails_tbl");
         });
 
         modelBuilder.Entity<EmployeeDetailsTbl>(entity =>

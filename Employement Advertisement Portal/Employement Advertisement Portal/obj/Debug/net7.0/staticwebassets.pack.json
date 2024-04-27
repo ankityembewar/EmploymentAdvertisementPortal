@@ -105,6 +105,46 @@
       "PackagePath": "staticwebassets\\DataTable\\js\\vfs_fonts.min.js"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\0a929dcc-b667-46b4-99af-81d7a217b6ec.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\0a929dcc-b667-46b4-99af-81d7a217b6ec.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3796d093-69c1-43a7-a44e-bf26989172e9.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\3796d093-69c1-43a7-a44e-bf26989172e9.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3c27ca7a-1704-4bd6-b63d-c432a1b27a6e.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\3c27ca7a-1704-4bd6-b63d-c432a1b27a6e.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\4023f513-07d9-4a9a-9424-1b8d3b592ead.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\4023f513-07d9-4a9a-9424-1b8d3b592ead.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\49463602-3f60-4b21-8837-1109c3dc6832.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\49463602-3f60-4b21-8837-1109c3dc6832.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\5914b26c-d7b2-4056-a1d3-e6ff65f5733e.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\5914b26c-d7b2-4056-a1d3-e6ff65f5733e.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\6701c4e1-1083-4481-a5f3-8ad7d88ac6c3.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\6701c4e1-1083-4481-a5f3-8ad7d88ac6c3.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\7b88b180-cc55-4f67-80c0-746ec4d60b21.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\7b88b180-cc55-4f67-80c0-746ec4d60b21.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a71fa750-a5a6-4300-81bf-d3bbd2cc438d.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\a71fa750-a5a6-4300-81bf-d3bbd2cc438d.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\c95b79d2-912a-4035-8faa-327f9f6b38a7.jfif",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\c95b79d2-912a-4035-8faa-327f9f6b38a7.jfif"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -115,6 +155,10 @@
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\admin.js",
       "PackagePath": "staticwebassets\\js\\admin.js"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\advertisement.js",
+      "PackagePath": "staticwebassets\\js\\advertisement.js"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\datatable.js",

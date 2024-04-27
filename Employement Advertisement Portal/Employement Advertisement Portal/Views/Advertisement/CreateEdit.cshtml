@@ -1,0 +1,76 @@
+﻿@model EAP.ViewModel.AdvertisementViewModel
+@{
+    ViewData["Title"] = "Create Advertisement";
+}
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 70%;">
+        <div class="card-header">
+            <h5>@(Model.AdvId == 0 ? "Add Advertisement" : "Update Advertisement")</h5>
+        </div>
+        <div class="card-body">
+            <form id="createEditAdvertiseForm" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Title" class="control-label"></label>
+                            <input asp-for="Title" class="form-control" pattern=".{0,80}" title="Title must be at most 80 characters long." />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <textarea asp-for="Description" class="form-control" pattern=".{0,500}" title="Description must be at most 500 characters long."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" type="number" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <!-- Other fields can be added here -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Location" class="control-label"></label>
+                            <input asp-for="Location" class="form-control" />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MediaPath" class="control-label"></label>
+                            <input type="file" name="imageFile" class="form-control" />
+                            <span asp-validation-for="MediaPath" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AdvCategoryId" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.AdvCategoryId, new SelectList(Model.AdvertisementCategoryList, "Value", "Text"), "-- Select Role --", new { @class = "form-control" })
+                            <span asp-validation-for="AdvCategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                @Html.HiddenFor(x => x.AdvId)
+                @Html.HiddenFor(x => x.EmpId)
+                @Html.HiddenFor(x => x.CreatedBy)
+                @Html.HiddenFor(x => x.CreatedDate)
+                @Html.HiddenFor(x => x.ModifiedDate)
+                @Html.HiddenFor(x => x.ModifiedBy)
+                @Html.HiddenFor(x => x.AdvertisementCategoryList)
+                <!-- Other hidden fields can be added here -->
+            </form>
+           </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-center">
+                <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
+                <button type="submit" onclick="submitAdvertisementForm()" form="createEditForm" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/advertisement.js"></script>
+}

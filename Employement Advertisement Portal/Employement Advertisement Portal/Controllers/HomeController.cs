@@ -2,6 +2,7 @@
 using Employement_Advertisement_Portal.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
 {
@@ -21,7 +22,16 @@ namespace Employement_Advertisement_Portal.Controllers
             
             if (_helperUtility.IsUserLoggedIn())
             {
-                return RedirectToAction("Index", "Admin");
+                if(User.FindFirstValue(ClaimTypes.Role).ToString()=="Admin")
+                {
+                    ViewBag.Role = "Admin";
+                    return RedirectToAction("Index", "Admin");
+                }  
+                else
+                { 
+                    return RedirectToAction("List", "Advertisement");
+                }
+                      
             }
             return RedirectToAction("UserLogin","Login");
 

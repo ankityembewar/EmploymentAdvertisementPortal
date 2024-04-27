@@ -36,6 +36,8 @@ namespace EAP.ViewModel
 
         public IEnumerable<SelectListItem> EmployeeRole { get; set; }
 
+        public List<AdvertisementViewModel> AdvertisementList { get; set; } = new List<AdvertisementViewModel>();
+
         public string Password { get; set; }
     }
 

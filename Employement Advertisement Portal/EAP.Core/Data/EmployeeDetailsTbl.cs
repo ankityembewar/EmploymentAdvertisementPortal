@@ -29,5 +29,7 @@ public partial class EmployeeDetailsTbl
 
     public DateTime ModifiedDate { get; set; }
 
+    public virtual ICollection<AdvertisementDetailsTbl> AdvertisementDetailsTbls { get; set; } = new List<AdvertisementDetailsTbl>();
+
     public virtual UserRoleTbl Role { get; set; } = null!;
 }
