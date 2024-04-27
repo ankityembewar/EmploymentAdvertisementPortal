@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Employement_Advertisement_Portal.Data;
+namespace EAP.Core.Data;
 
 public partial class SmtpSetting
 {

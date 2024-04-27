@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EAP.ViewModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd91976e86f37ac98f6dee51a2c9ba4531db9a97")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7bf2fdbfdee223f972f502f25e0ba4f4a78fbb29")]
 [assembly: System.Reflection.AssemblyProductAttribute("EAP.ViewModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EAP.ViewModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
