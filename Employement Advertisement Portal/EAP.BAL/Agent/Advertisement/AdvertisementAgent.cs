@@ -52,6 +52,45 @@ namespace EAP.BAL.Agent.Advertisement
                            });
         }
 
+        public List<AdvertisementViewModel> GetAdvertisementRequestList()
+        {
+            List<AdvertisementDetailsTbl> advertisementList = _advertiseService.GetAdvertisementRequestList();
+            return _mapper.Map<List<AdvertisementViewModel>>(advertisementList);
+        }
+
+        public bool ActionOnAdvertisement(int advId, string decision)
+        {
+            if (advId != 0 && decision != null)
+                return _advertiseService.ActionOnAdvertisement(advId, decision);
+            else
+                return false;
+        }
+
+        public bool IsAdvertisementDeleted(int advId)
+        {
+            return _advertiseService.IsAdvertisementDeleted(advId);
+        }
+
+        public List<AdvertisementViewModel> UserAdvertisementList(int userId)
+        {
+            List<AdvertisementDetailsTbl> advertisementList = _advertiseService.UserAdvertisementList(userId);
+            return _mapper.Map<List<AdvertisementViewModel>>(advertisementList);
+        }
+
+        public bool IsAdvertisementEdit(AdvertisementViewModel advertisement)
+        {
+            AdvertisementDetailsTbl advertisementDetails = _mapper.Map<AdvertisementDetailsTbl>(advertisement);
+            return _advertiseService.IsAdvertisementEdit(advertisementDetails);
+        }
+
+        public AdvertisementViewModel GetAdvertisementInfo(int advId)
+        {
+            AdvertisementDetailsTbl advertisement = _advertiseService.GetAdvertisementInfo(advId);
+            return _mapper.Map<AdvertisementViewModel>(advertisement);
+        }
+
+
+
         #endregion
     }
 }

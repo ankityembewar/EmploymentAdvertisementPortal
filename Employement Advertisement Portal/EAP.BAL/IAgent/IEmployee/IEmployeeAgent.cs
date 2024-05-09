@@ -65,5 +65,18 @@ namespace EAP.BAL.IAgent.IEmployee
         /// <returns>A collection of SelectListItem representing employee role options.</returns>
         IEnumerable<SelectListItem> GetEmployeeRoleOptions();
 
+        /// <summary>
+        /// Retrieves SMTP credentials for a specified identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier of the SMTP credentials to retrieve.</param>
+        /// <returns>An SMTPViewModel object containing the SMTP credentials for the specified identifier.</returns>
+        SMTPViewModel GetSMTPCred(int id);
+
+        /// <summary>
+        /// Determines if the provided SMTP credentials need updating in the system.
+        /// </summary>
+        /// <param name="smtp">The SMTPViewModel instance containing the SMTP credentials to verify.</param>
+        /// <returns>True if the SMTP credentials should be updated, otherwise false.</returns>
+        bool IsSMPTPCredUpdate(SMTPViewModel smtp);
     }
 }

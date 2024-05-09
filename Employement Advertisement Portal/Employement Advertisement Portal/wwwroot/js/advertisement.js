@@ -54,7 +54,42 @@ document.addEventListener("DOMContentLoaded", function () {
 function submitAdvertisementForm() {
     var empId = document.getElementById('EmpId').value;
     var form = document.getElementById('createEditAdvertiseForm');
+    var imageFileInput = document.getElementById('fileInput');
 
+    // Check if a file is selected in the image file input
+    if (imageFileInput === null || imageFileInput.files.length === 0) {
+        // Display an error message to the user
+        alert('Please select a file before submitting the form.');
+        return false; // Prevent the form from submitting
+    }
+
+    // Get the selected file
+    var file = imageFileInput.files[0];
+
+    // Function to check if the file is an image
+    function isImageFile(file) {
+        const mimeType = file.type;
+        const imageMimeTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/bmp',
+            'image/tiff',
+            'image/webp',
+            'image/svg+xml',
+            'image/avif'
+        ];
+        return imageMimeTypes.includes(mimeType);
+    }
+
+    // Check if the selected file is an image
+    if (!isImageFile(file)) {
+        // Display an error message to the user
+        alert('Please select an image file (JPEG, PNG, GIF, etc.) before submitting the form.');
+        return false; // Prevent the form from submitting
+    }
+
+    // Set form action based on empId
     if (empId !== "0") {
         // Submit to Edit Advertisement action method
         form.action = "/Advertisement/Edit";
@@ -62,6 +97,9 @@ function submitAdvertisementForm() {
         // Submit to Add Advertisement action method
         form.action = "/Advertisement/Create";
     }
-    form.method = "post";
+
+    form.method = "POST"; // Set the form method to POST
+
+    // Submit the form
     form.submit();
 }

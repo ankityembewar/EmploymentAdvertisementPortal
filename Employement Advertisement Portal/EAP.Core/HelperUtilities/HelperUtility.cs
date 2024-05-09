@@ -19,7 +19,7 @@ namespace EAP.Core.HelperUtilities
         }
 
         public int GetEmployeeId()
-        {
+        { 
             // Get the current user's claims principal from the HttpContext
             ClaimsPrincipal user = _httpContextAccessor.HttpContext.User;
 

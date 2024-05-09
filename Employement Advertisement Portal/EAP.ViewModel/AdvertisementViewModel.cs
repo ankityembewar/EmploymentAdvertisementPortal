@@ -14,10 +14,10 @@ namespace EAP.ViewModel
 
         public int EmpId { get; set; }
 
-        [StringLength(20, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [StringLength(80, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Title { get; set; }
 
-        [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [StringLength(500, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Description { get; set; } = null!;
 
         public int Price { get; set; }

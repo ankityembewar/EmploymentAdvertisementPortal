@@ -87,7 +87,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("DOB");
             entity.Property(e => e.Email)
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.FirstName)
                 .HasMaxLength(20)

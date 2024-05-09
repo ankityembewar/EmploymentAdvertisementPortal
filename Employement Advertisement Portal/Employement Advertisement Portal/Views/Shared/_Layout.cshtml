@@ -1,10 +1,8 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    // Get the current user's role claim
-    var userRoleClaim = HttpContextAccessor.HttpContext?.User?.FindFirst(System.Security.Claims.ClaimTypes.Role);
-
-    // Extract the claimed role value (if present)
-    string claimedRole = userRoleClaim?.Value;
+    // Retrieve the claimed role and user ID from the HttpContext
+    string claimedRole = HttpContextAccessor.HttpContext?.User?.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+    int? userId = HttpContextAccessor.HttpContext?.User?.FindFirst("EmpId")?.Value is string userIdStr && int.TryParse(userIdStr, out int id) ? id : (int?)null;
 }
 
 <!DOCTYPE html>
@@ -37,9 +35,11 @@
                         @if (claimedRole == "Admin")
                         {
                             <li><a class="dropdown-item" href="/admin/index">Employee List</a></li>
-                            <li><a class="dropdown-item" href="/admin/SMTPCred">SMTP Credential</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("SMTPCred", "Admin", new { id = 1 })">SMTP Credential</a></li>
+                            <li><a class="dropdown-item" href="/admin/AdvertisementRequest">Advertisement Request</a></li>
                         }
-                        <li><a class="dropdown-item" href="/admin/EditEmployee/">Profile</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Details", "Admin", new{empId = userId })">Profile</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("UserAdvertisementList", "Advertisement")">Created Advertisement</a></li>
                     </ul>
                 </div>
 
@@ -58,6 +58,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated){
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("List", "Advertisement")">Advertistements</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 @if (User.Identity.IsAuthenticated)
@@ -80,6 +85,8 @@
     <div class="container main-content">
         <!-- Add class "main-content" here -->
         <main role="main" class="pb-3">
+            @Html.Hidden("loginedRole",claimedRole)
+            @Html.Hidden("userId", userId)
             @RenderBody()
         </main>
     </div>

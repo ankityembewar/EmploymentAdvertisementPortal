@@ -19,5 +19,19 @@ namespace EAP.BAL.IAgent.IAdvertisement
         public bool IsAdvertisementCreated(AdvertisementViewModel advertisement);
 
         public IEnumerable<SelectListItem> GetAdvertisementCategoryOptions();
+
+        public List<AdvertisementViewModel> GetAdvertisementRequestList();
+
+        bool ActionOnAdvertisement(int advId, string decision);
+
+        bool IsAdvertisementDeleted(int advId);
+
+        public List<AdvertisementViewModel> UserAdvertisementList(int userId);
+
+        public bool IsAdvertisementEdit(AdvertisementViewModel advertisement);
+
+        public AdvertisementViewModel GetAdvertisementInfo(int advId);
+
+
     }
 }

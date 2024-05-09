@@ -15,6 +15,7 @@ namespace EAP.Core.Mapper
     {
         public Mapper()
         {
+            CreateMap<SMTPViewModel, SmtpSetting>().ReverseMap();
             CreateMap<LoginViewModel, UserLoginTbl>().ReverseMap();
             CreateMap<EmployeeViewModel, EmployeeDetailsTbl>().ReverseMap();
             CreateMap<UserRoleTbl, SelectListItem>()
@@ -33,15 +34,18 @@ namespace EAP.Core.Mapper
 
             CreateMap<AdvertisementDetailsTbl, AdvertisementViewModel>()
                 .ForMember(dest => dest.AdvertisementCategoryList, opt => opt.MapFrom(src =>
-                    new List<SelectListItem> {
-                                                new SelectListItem {
-                                                                      Value = src.AdvCategory.AdvCategoryId.ToString(),
-                                                                      Text = src.AdvCategory.Category
-                                                                    }
-                                              }))
-                .ForMember(dest => dest.EmployeeDetail, opt => opt.MapFrom(src => src.Emp));
+    src.AdvCategory != null ? new List<SelectListItem>
+    {
+        new SelectListItem
+        {
+            Value = src.AdvCategory.AdvCategoryId.ToString(),
+            Text = src.AdvCategory.Category
+        }
+    } : new List<SelectListItem>()))
+                .ForMember(dest => dest.EmployeeDetail, opt => opt.MapFrom(src => src.Emp))
+                .ReverseMap();
 
-            //CreateMap<List<EmployeeDetailsTbl>, List<EmployeeViewModel>>().ReverseMap();
+            //CreateMap<AdvertisementDetailsTbl, AdvertisementViewModel>().ReverseMap();
         }
     }
 }

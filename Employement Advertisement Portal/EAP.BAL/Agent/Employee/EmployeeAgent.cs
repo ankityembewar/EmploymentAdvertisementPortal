@@ -59,6 +59,12 @@ namespace EAP.BAL.Agent.Employee
                            });
         }
 
+        public SMTPViewModel GetSMTPCred(int id)
+        {
+            SmtpSetting smtpSetting = _employeeService.GetSMTPCred(id);
+            return _mapper.Map<SMTPViewModel>(smtpSetting);
+        }
+
         public bool IsDuplicateEmail(string email)
         {
             throw new NotImplementedException();
@@ -73,6 +79,12 @@ namespace EAP.BAL.Agent.Employee
         public bool IsEmployeeDeleted(int empId)
         {
             return _employeeService.IsEmployeeDeleted(empId);
+        }
+
+        public bool IsSMPTPCredUpdate(SMTPViewModel smtp)
+        {
+            SmtpSetting smtpSetting = _mapper.Map<SmtpSetting>(smtp);
+            return _employeeService.IsSMPTPCredUpdate(smtpSetting);
         }
 
         public bool UpdateEmployeeInfo(EmployeeViewModel employee)

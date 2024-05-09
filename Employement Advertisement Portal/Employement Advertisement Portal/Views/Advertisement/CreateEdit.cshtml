@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="Description" class="control-label"></label>
-                            <textarea asp-for="Description" class="form-control" pattern=".{0,500}" title="Description must be at most 500 characters long."></textarea>
+                            <input asp-for="Description" class="form-control" pattern=".{0,500}" title="Description must be at most 500 characters long." style="height: 150px;"></input>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -37,8 +37,20 @@
                             <span asp-validation-for="Location" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="MediaPath" class="control-label"></label>
-                            <input type="file" name="imageFile" class="form-control" />
+                            <label asp-for="MediaPath" class="control-label">Upload Image</label>
+
+                            <!-- File input for selecting the file -->
+                            <input type="file" name="imageFile" class="form-control" id="fileInput" required />
+
+                            <!-- Span to display the file name from MediaPath -->
+                            @if (!string.IsNullOrEmpty(Model.MediaPath))
+                            {
+                                <span id="fileName" class="form-text" style="margin-left: 10px;">
+                                    @(new System.IO.FileInfo(Model.MediaPath).Name)
+                                </span>
+                            }
+
+                            <!-- Validation message for MediaPath -->
                             <span asp-validation-for="MediaPath" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -58,12 +70,12 @@
                 <!-- Other hidden fields can be added here -->
             </form>
            </div>
-        </div>
         <div class="card-footer">
             <div class="text-center">
                 <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
                 <button type="submit" onclick="submitAdvertisementForm()" form="createEditForm" class="btn btn-success">Save</button>
             </div>
+        </div>
         </div>
     </div>
 </div>

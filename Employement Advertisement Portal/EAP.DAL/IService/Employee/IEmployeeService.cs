@@ -63,5 +63,19 @@ namespace EAP.DAL.IService.Employee
         /// </summary>
         /// <returns>A collection of SelectListItem representing employee role options.</returns>
         List<UserRoleTbl> GetEmployeeRoleOptions();
+
+        /// <summary>
+        /// Retrieves SMTP credentials for a specified identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier of the SMTP credentials to retrieve.</param>
+        /// <returns>An SmtpSetting object containing the SMTP credentials for the specified identifier.</returns>
+        SmtpSetting GetSMTPCred(int id);
+
+        /// <summary>
+        /// Determines if the provided SMTP credentials need updating in the system.
+        /// </summary>
+        /// <param name="smtp">The SmtpSetting instance containing the SMTP credentials to verify.</param>
+        /// <returns>True if the SMTP credentials should be updated, otherwise false.</returns>
+        bool IsSMPTPCredUpdate(SmtpSetting smtp);
     }
 }

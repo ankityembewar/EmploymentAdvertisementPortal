@@ -18,5 +18,17 @@ namespace EAP.DAL.IService.IAdvertisement
         public bool IsAdvertisementCreated(AdvertisementDetailsTbl advertisement);
 
         public List<AdvertisementCategoryTbl> GetAdvertisementCategoryOptions();
+        public List<AdvertisementDetailsTbl> GetAdvertisementRequestList();
+
+        public AdvertisementDetailsTbl GetDetailAdvertisementById(int advId);
+
+        bool ActionOnAdvertisement(int advId, string decision);
+
+        bool IsAdvertisementDeleted(int advId);
+
+        public List<AdvertisementDetailsTbl> UserAdvertisementList(int userId);
+
+        public bool IsAdvertisementEdit(AdvertisementDetailsTbl advertisement);
+        public AdvertisementDetailsTbl GetAdvertisementInfo(int advId);
     }
 }
