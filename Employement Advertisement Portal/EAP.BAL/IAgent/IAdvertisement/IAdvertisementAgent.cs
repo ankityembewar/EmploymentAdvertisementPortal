@@ -32,6 +32,7 @@ namespace EAP.BAL.IAgent.IAdvertisement
 
         public AdvertisementViewModel GetAdvertisementInfo(int advId);
 
+        public List<AdvertisementViewModel> Search(string location, string category);
 
     }
 }

@@ -30,5 +30,6 @@ namespace EAP.DAL.IService.IAdvertisement
 
         public bool IsAdvertisementEdit(AdvertisementDetailsTbl advertisement);
         public AdvertisementDetailsTbl GetAdvertisementInfo(int advId);
+        public List<AdvertisementDetailsTbl> Search(string location, string category);
     }
 }

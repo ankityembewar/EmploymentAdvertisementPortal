@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -152,6 +153,30 @@ namespace EAP.DAL.Service.Advertisement
             using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
                 return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvId == advId).FirstOrDefault();
+            }
+        }
+
+        public List<AdvertisementDetailsTbl> Search(string location, string category)
+        {
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                if(location!=null && category != null)
+                {
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower() && x.Location.ToLower() == location.ToLower()).ToList();
+                }
+                else if (location != null)
+                {
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.Location.ToLower() == location.ToLower()).ToList();
+                }
+                else if (category != null)
+                {
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower()).ToList();
+                }
+                else
+                {
+                    return null;
+                }
+
             }
         }
     }

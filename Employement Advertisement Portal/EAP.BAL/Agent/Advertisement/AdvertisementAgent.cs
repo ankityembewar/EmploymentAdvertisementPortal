@@ -89,6 +89,12 @@ namespace EAP.BAL.Agent.Advertisement
             return _mapper.Map<AdvertisementViewModel>(advertisement);
         }
 
+        public List<AdvertisementViewModel> Search(string location, string category)
+        {
+            List<AdvertisementDetailsTbl> advertisementList = _advertiseService.Search(location, category);
+            return _mapper.Map<List<AdvertisementViewModel>>(advertisementList);
+        }
+
 
 
         #endregion

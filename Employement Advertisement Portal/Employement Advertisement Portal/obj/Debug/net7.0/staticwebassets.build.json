@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+EE/iPsgdsYB8TejZWGaeIkD6++O/OeYkgfAF5RXm74=",
+  "Hash": "NPUrBgs/IQHlYNnxjHJfaoR1ddD078gGxw4FQAlE10E=",
   "Source": "Employement Advertisement Portal",
   "BasePath": "_content/Employement Advertisement Portal",
   "Mode": "Default",
@@ -644,25 +644,6 @@
       "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\2512969d-0205-4099-8a08-eefdfa6c5b2f.png"
     },
     {
-      "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\26f83531-ec9c-4a00-8463-eb16752f2c81.csv",
-      "SourceId": "Employement Advertisement Portal",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\",
-      "BasePath": "_content/Employement Advertisement Portal",
-      "RelativePath": "Image/Advertisement/26f83531-ec9c-4a00-8463-eb16752f2c81.csv",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\26f83531-ec9c-4a00-8463-eb16752f2c81.csv"
-    },
-    {
       "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3796d093-69c1-43a7-a44e-bf26989172e9.jfif",
       "SourceId": "Employement Advertisement Portal",
       "SourceType": "Discovered",
@@ -872,25 +853,6 @@
       "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\6701c4e1-1083-4481-a5f3-8ad7d88ac6c3.jpg"
     },
     {
-      "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\683ea0e7-7177-457b-9f82-72095cabe1df.csv",
-      "SourceId": "Employement Advertisement Portal",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\",
-      "BasePath": "_content/Employement Advertisement Portal",
-      "RelativePath": "Image/Advertisement/683ea0e7-7177-457b-9f82-72095cabe1df.csv",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\683ea0e7-7177-457b-9f82-72095cabe1df.csv"
-    },
-    {
       "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\72657b4f-694a-4de4-ad6b-5101324630d0.jpeg",
       "SourceId": "Employement Advertisement Portal",
       "SourceType": "Discovered",
@@ -1062,25 +1024,6 @@
       "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\b54d45bb-468e-4d84-9cd7-825545cbab84.jpg"
     },
     {
-      "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\be871b67-9690-4f50-90fa-351a1bd0ec85.csv",
-      "SourceId": "Employement Advertisement Portal",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\",
-      "BasePath": "_content/Employement Advertisement Portal",
-      "RelativePath": "Image/Advertisement/be871b67-9690-4f50-90fa-351a1bd0ec85.csv",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\be871b67-9690-4f50-90fa-351a1bd0ec85.csv"
-    },
-    {
       "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\bff5024e-9733-47a6-8a50-cb00022cebc1.jpg",
       "SourceId": "Employement Advertisement Portal",
       "SourceType": "Discovered",
@@ -1136,6 +1079,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\c95b79d2-912a-4035-8faa-327f9f6b38a7.jfif"
+    },
+    {
+      "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\cabbe664-a415-4832-9d40-c3f5f6962b56.png",
+      "SourceId": "Employement Advertisement Portal",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\",
+      "BasePath": "_content/Employement Advertisement Portal",
+      "RelativePath": "Image/Advertisement/cabbe664-a415-4832-9d40-c3f5f6962b56.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\Advertisement\\cabbe664-a415-4832-9d40-c3f5f6962b56.png"
     },
     {
       "Identity": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\d0162243-116f-4195-89d4-26962a496283.jpg",

@@ -84,6 +84,12 @@ namespace Employement_Advertisement_Portal.Controllers
             return new JsonResult(advertisements);
         }
 
+        [HttpPost]
+        public ActionResult Search(string location, string category)
+        {
+            List<AdvertisementViewModel> advertisements = _advertiseAgent.Search(location, category);
+            return View("List", advertisements);
+        }
 
     }
 }
