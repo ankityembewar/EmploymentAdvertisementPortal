@@ -1,4 +1,5 @@
 ﻿using EAP.Core.Data;
+using EAP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,13 @@ namespace EAP.DAL.IService.Login
         /// <param name="login">The UserLoginTbl model containing the email and password.</param>
         /// <returns>True if the credentials are valid; otherwise, false.</returns>
         bool IsValidCredential(UserLoginTbl login);
+
+        bool IsValidEmail(string email);
+
+        bool ResetPassword(string email, string token);
+
+        bool CheckCredForForgetPassword(string email, string token);
+
+        bool UpdatePassword(UserLoginTbl login);
     }
 }

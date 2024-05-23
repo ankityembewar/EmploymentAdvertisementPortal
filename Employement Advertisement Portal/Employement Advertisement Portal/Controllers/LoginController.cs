@@ -3,6 +3,7 @@ using EAP.BAL.IAgent.ILogin;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Plugins;
 using System.Security.Claims;
 
 namespace Employement_Advertisement_Portal.Controllers
@@ -85,6 +86,51 @@ namespace Employement_Advertisement_Portal.Controllers
                 ExpiresUtc = DateTime.UtcNow.AddMinutes(30)
             }).GetAwaiter().GetResult();
         }
+
+        #endregion
+
+        #region Forget Password
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult  RequestPasswordReset(string email)
+        {
+            bool isEmployeeExists = _loginAgent.IsValidEmail(email);
+            // Check if the email exists in the system
+            if (isEmployeeExists)
+            {
+                string token = _loginAgent.ResetPassword(email);
+                return RedirectToAction("UserLogin");
+
+            }
+            else
+            {
+                return RedirectToAction("ForgetPassword");
+            }
+        }
+
+        public ActionResult CreatePassword(string token, string email)
+        {
+            LoginViewModel login = new LoginViewModel();
+            login.Token = token;
+            login.Email = email;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePassword(LoginViewModel login)
+        {
+            if(_loginAgent.CheckCredForForgetPassword(login.Email , login.Token))
+            {
+                bool result = _loginAgent.UpdatePassword(login);
+                return RedirectToAction("UserLogin", new { login = login });
+            }
+            return View();
+        }
+
+
 
         #endregion
     }

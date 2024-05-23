@@ -18,4 +18,6 @@ public partial class UserLoginTbl
     public DateTime ModifiedDate { get; set; }
 
     public int Id { get; set; }
+
+    public string? Token { get; set; }
 }

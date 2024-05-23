@@ -69,14 +69,6 @@ namespace EAP.DAL.Service.Employee
             }
         }
 
-        public SmtpSetting GetSMTPCred(int id=1)
-        {
-            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
-            {
-                return context.SmtpSettings.FirstOrDefault(x => x.Id == id);
-            }
-        }
-
         public bool IsDuplicateEmail(string email)
         {
             throw new NotImplementedException();
@@ -90,25 +82,26 @@ namespace EAP.DAL.Service.Employee
                 {
                     // Map audit fields for employee
                     _helperUtility.MapAuditFields(employee, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
+                    string guid = Guid.NewGuid().ToString();
 
                     // Create user login
                     UserLoginTbl userLogin = new UserLoginTbl
                     {
-                        Password = password,
+                        Password = guid.Substring(0, 8),
                         Email = employee.Email
                     };
                     _helperUtility.MapAuditFields(userLogin, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
 
                     // Add employee and user login to context
                     context.EmployeeDetailsTbls.Add(employee);
-                    //context.UserLoginTbls.Add(userLogin);
+                    context.UserLoginTbls.Add(userLogin);
 
                     // Save changes to commit both employee and user login
                     context.SaveChanges();
 
                     string subject = "Welcome! Here's Your Employee Account Information";
-                    string body = "<html>\r\n<head>\r\n    <title>Welcome</title>\r\n</head>\r\n<body>\r\n    <h1>Welcome Aboard!</h1>\r\n    <p>We're thrilled to have you as part of our team. Your employee account has been successfully created. Below are your account details:</p>\r\n    <ul>\r\n        <li><strong>Username:</strong> [USERNAME]</li>\r\n        <li><strong>Email:</strong> [EMAIL]</li>\r\n    </ul>\r\n    <p>Please keep this information secure and do not share it with anyone.</p>\r\n    <p>To get started, please follow the link below to activate your account and set up your password:</p>\r\n    <a href=\"[SITE_URL]/Login/ForgetPassword\">Activate Account</a>\r\n    <p>If you have any questions, feel free to reach out to your manager or HR department.</p>\r\n    <p>Welcome once again, and we look forward to working with you!</p>\r\n    <p>This is an automated email; please do not reply to this message.</p>\r\n</body>\r\n</html>";
-                    SendEmail(employee.Email,"ankit@yopmail.com", subject, body);
+                    string body = "<html>\r\n<head>\r\n    <title>Welcome</title>\r\n</head>\r\n<body>\r\n    <h1>Welcome Aboard!</h1>\r\n    <p>We're thrilled to have you as part of our team. Your employee account has been successfully created. Below are your account details:</p>\r\n    <ul>\r\n        <li><strong>Email:</strong> " + employee.Email + "</li>\r\n    </ul>\r\n    <p>Please keep this information secure and do not share it with anyone.</p>\r\n    <p>To get started, please follow the link below to activate your account and set up your password:</p>\r\n    <a href=\"http:/localhost:5288/Login/ForgetPassword\">Activate Account</a>\r\n    <p>If you have any questions, feel free to reach out to your manager or HR department.</p>\r\n    <p>Welcome once again, and we look forward to working with you!</p>\r\n    <p>This is an automated email; please do not reply to this message.</p>\r\n</body>\r\n</html>";
+                    _helperUtility.SendEmail(employee.Email,"ankit@yopmail.com", subject, body);
                     return true;
                 }
             }
@@ -173,39 +166,6 @@ namespace EAP.DAL.Service.Employee
                 throw;
             }
             
-        }
-
-        public void SendEmail(string to, string from, string subject, string body)
-        {
-            try
-            {
-                SmtpSetting smtp = GetSMTPCred();
-
-                // Create a new SmtpClient instance using the provided SMTP settings
-                using (var smtpClient = new SmtpClient(smtp.Host, smtp.Port))
-                {
-                    // Configure the SMTP client
-                    smtpClient.Credentials = new NetworkCredential(smtp.Username, smtp.Password);
-                    smtpClient.EnableSsl = smtp.EnableSsl;
-                    smtpClient.Timeout = 30000;
-                    smtpClient.UseDefaultCredentials = false;
-
-                    // Create a new MailMessage instance
-                    using (var mailMessage = new MailMessage(from, to))
-                    {
-                        mailMessage.Subject = subject;
-                        mailMessage.Body = body;
-                        mailMessage.IsBodyHtml = true;
-                        // Send the email
-                        smtpClient.Send(mailMessage);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions that may occur during email sending
-                throw new InvalidOperationException(ex.Message);
-            }
         }
     }
 }

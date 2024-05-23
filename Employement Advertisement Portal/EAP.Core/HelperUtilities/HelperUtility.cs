@@ -4,6 +4,9 @@ using System.Reflection;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Hosting;
 using EAP.ViewModel;
+using EAP.Core.Data;
+using System.Net.Mail;
+using System.Net;
 
 namespace EAP.Core.HelperUtilities
 {
@@ -136,6 +139,47 @@ namespace EAP.Core.HelperUtilities
 
             // User is not authorized
             return false;
+        }
+
+        public void SendEmail(string to, string from, string subject, string body)
+        {
+            try
+            {
+                SmtpSetting smtp = GetSMTPCred();
+
+                // Create a new SmtpClient instance using the provided SMTP settings
+                using (var smtpClient = new SmtpClient(smtp.Host, smtp.Port))
+                {
+                    // Configure the SMTP client
+                    smtpClient.Credentials = new NetworkCredential(smtp.Username, smtp.Password);
+                    smtpClient.EnableSsl = smtp.EnableSsl;
+                    smtpClient.Timeout = 30000;
+                    smtpClient.UseDefaultCredentials = false;
+
+                    // Create a new MailMessage instance
+                    using (var mailMessage = new MailMessage(from, to))
+                    {
+                        mailMessage.Subject = subject;
+                        mailMessage.Body = body;
+                        mailMessage.IsBodyHtml = true;
+                        // Send the email
+                        smtpClient.Send(mailMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during email sending
+                throw new InvalidOperationException(ex.Message);
+            }
+        }
+
+        public SmtpSetting GetSMTPCred(int id = 1)
+        {
+            using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+            {
+                return context.SmtpSettings.FirstOrDefault(x => x.Id == id);
+            }
         }
     }
 }

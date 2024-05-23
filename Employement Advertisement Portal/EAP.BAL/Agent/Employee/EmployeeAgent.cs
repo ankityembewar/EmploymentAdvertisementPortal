@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EAP.BAL.IAgent.IEmployee;
 using EAP.Core.Data;
+using EAP.Core.HelperUtilities;
 using EAP.DAL.IService.Employee;
 using EAP.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,13 +14,15 @@ namespace EAP.BAL.Agent.Employee
         #region Private Variables
         private readonly IMapper _mapper;
         private readonly IEmployeeService _employeeService;
-        #endregion
+        private readonly HelperUtility _helperUtility;
+#endregion
 
         #region Constructor
-        public EmployeeAgent(IMapper mapper, IEmployeeService employeeService)
+        public EmployeeAgent(IMapper mapper, IEmployeeService employeeService, HelperUtility helperUtility)
         {
             _mapper = mapper;
             _employeeService = employeeService;
+            _helperUtility = helperUtility;
         }
         #endregion
 
@@ -61,7 +64,7 @@ namespace EAP.BAL.Agent.Employee
 
         public SMTPViewModel GetSMTPCred(int id)
         {
-            SmtpSetting smtpSetting = _employeeService.GetSMTPCred(id);
+            SmtpSetting smtpSetting = _helperUtility.GetSMTPCred(id);
             return _mapper.Map<SMTPViewModel>(smtpSetting);
         }
 

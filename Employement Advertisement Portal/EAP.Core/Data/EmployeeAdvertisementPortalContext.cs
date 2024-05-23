@@ -28,8 +28,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
     public virtual DbSet<UserRoleTbl> UserRoleTbls { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-=> optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AQJSKH\\MSSQLSERVER1;Initial Catalog=Employee_Advertisement_Portal;Trusted_Connection=True;Trust Server Certificate=True");
-
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AQJSKH\\MSSQLSERVER1;Initial Catalog=Employee_Advertisement_Portal;Trusted_Connection=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -124,12 +123,13 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
 
             entity.Property(e => e.CreatedDate).HasColumnType("date");
             entity.Property(e => e.Email)
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.ModifiedDate).HasColumnType("date");
             entity.Property(e => e.Password)
                 .HasMaxLength(20)
                 .IsUnicode(false);
+            entity.Property(e => e.Token).IsUnicode(false);
         });
 
         modelBuilder.Entity<UserRoleTbl>(entity =>

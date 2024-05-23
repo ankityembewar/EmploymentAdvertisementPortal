@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EAP.BAL.IAgent.IAdvertisement;
 using EAP.Core.Data;
+using EAP.Core.HelperUtilities;
 using EAP.DAL.IService.Employee;
 using EAP.DAL.IService.IAdvertisement;
 using EAP.DAL.Service.Employee;
@@ -21,8 +22,9 @@ namespace EAP.BAL.Agent.Advertisement
         private readonly IAdvertisementService _advertiseService;
         #endregion
 
+
         #region Constructor
-        public AdvertisementAgent(IMapper mapper, IAdvertisementService advertiseService)
+        public AdvertisementAgent(IMapper mapper, IAdvertisementService advertiseService, HelperUtility helperUtility)
         {
             _mapper = mapper;
             _advertiseService = advertiseService;
