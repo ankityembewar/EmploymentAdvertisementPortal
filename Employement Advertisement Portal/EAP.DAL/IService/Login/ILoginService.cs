@@ -21,7 +21,7 @@ namespace EAP.DAL.IService.Login
 
         bool ResetPassword(string email, string token);
 
-        bool CheckCredForForgetPassword(string email, string token);
+        bool CheckCredForForgotPassword(string email, string token);
 
         bool UpdatePassword(UserLoginTbl login);
     }

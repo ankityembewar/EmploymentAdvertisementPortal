@@ -157,8 +157,10 @@ namespace EAP.Core.HelperUtilities
                     smtpClient.UseDefaultCredentials = false;
 
                     // Create a new MailMessage instance
-                    using (var mailMessage = new MailMessage(from, to))
+                    using (var mailMessage = new MailMessage())
                     {
+                        mailMessage.From = new MailAddress(from, "EAP Portal");
+                        mailMessage.To.Add(to);
                         mailMessage.Subject = subject;
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = true;

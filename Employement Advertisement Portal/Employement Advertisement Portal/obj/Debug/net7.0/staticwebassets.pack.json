@@ -105,6 +105,10 @@
       "PackagePath": "staticwebassets\\DataTable\\js\\vfs_fonts.min.js"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\038cd3a7-a7d4-4bc5-b973-9326dabcff0c.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\038cd3a7-a7d4-4bc5-b973-9326dabcff0c.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\09bdbfbb-510c-4dfc-b8cc-0510bcef569b.jfif",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\09bdbfbb-510c-4dfc-b8cc-0510bcef569b.jfif"
     },
@@ -113,12 +117,28 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\0a929dcc-b667-46b4-99af-81d7a217b6ec.jpg"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\1372dbda-8f6f-4373-8808-985bdea4d44d.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\1372dbda-8f6f-4373-8808-985bdea4d44d.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\17e52e2c-3d36-4d65-baab-95d0f82ceb25.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\17e52e2c-3d36-4d65-baab-95d0f82ceb25.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\1e4d5883-e5ea-4e1f-b44b-1625fe2085c5.jpeg",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\1e4d5883-e5ea-4e1f-b44b-1625fe2085c5.jpeg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\2512969d-0205-4099-8a08-eefdfa6c5b2f.png",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\2512969d-0205-4099-8a08-eefdfa6c5b2f.png"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\28cfc0ca-3994-457b-84e9-88261d6c156e.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\28cfc0ca-3994-457b-84e9-88261d6c156e.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\2f21016f-72af-4113-b958-1cd4d9fcdb23.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\2f21016f-72af-4113-b958-1cd4d9fcdb23.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3796d093-69c1-43a7-a44e-bf26989172e9.jfif",
@@ -131,6 +151,14 @@
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3c27ca7a-1704-4bd6-b63d-c432a1b27a6e.jpg",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\3c27ca7a-1704-4bd6-b63d-c432a1b27a6e.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3e6a814d-4b2f-4c57-bd07-a25d509af5a8.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\3e6a814d-4b2f-4c57-bd07-a25d509af5a8.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\3e80bf0d-696d-4be6-91f4-6a44f97b5daf.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\3e80bf0d-696d-4be6-91f4-6a44f97b5daf.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\4023f513-07d9-4a9a-9424-1b8d3b592ead.jfif",
@@ -153,12 +181,32 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\49463602-3f60-4b21-8837-1109c3dc6832.jfif"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\4a6db2ae-c4b8-49a5-bbf7-851070a5d730.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\4a6db2ae-c4b8-49a5-bbf7-851070a5d730.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\50e01155-d328-46ca-a7fd-8b0a44c545e7.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\50e01155-d328-46ca-a7fd-8b0a44c545e7.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\57bc89de-fdbb-4ad2-abd4-d9f27e9a87c8.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\57bc89de-fdbb-4ad2-abd4-d9f27e9a87c8.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\5867f4bb-2272-4209-8834-0449bc3c504f.jpeg",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\5867f4bb-2272-4209-8834-0449bc3c504f.jpeg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\5914b26c-d7b2-4056-a1d3-e6ff65f5733e.jfif",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\5914b26c-d7b2-4056-a1d3-e6ff65f5733e.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\5e91b8dd-796d-4f13-a86f-11b24bd9496c.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\5e91b8dd-796d-4f13-a86f-11b24bd9496c.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\5ee39258-cabd-45e8-8338-2c7e46398a79.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\5ee39258-cabd-45e8-8338-2c7e46398a79.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\63d2fe56-1210-4109-ace2-8022751d0f1c.png",
@@ -185,12 +233,36 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\7b88b180-cc55-4f67-80c0-746ec4d60b21.jfif"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\7d449c02-a131-4b30-a2a7-ef8fbfc5bd98.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\7d449c02-a131-4b30-a2a7-ef8fbfc5bd98.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\8869c0c9-f7a6-4ccc-bb1a-f006e16919f8.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\8869c0c9-f7a6-4ccc-bb1a-f006e16919f8.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\949afda8-b759-42d9-b8ac-85c8fe4adf96.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\949afda8-b759-42d9-b8ac-85c8fe4adf96.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\9784d468-1585-4d4a-a575-e4e240e56a9e.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\9784d468-1585-4d4a-a575-e4e240e56a9e.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\9ab7e030-1026-4aa7-a55b-79d9b0c7e2e8.png",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\9ab7e030-1026-4aa7-a55b-79d9b0c7e2e8.png"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\9f6a3d0c-7160-4bf4-bbf9-72d657e8c35f.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\9f6a3d0c-7160-4bf4-bbf9-72d657e8c35f.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a0de3674-ec90-429e-8444-76d24c3c1870.jpeg",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\a0de3674-ec90-429e-8444-76d24c3c1870.jpeg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a3fc602e-0cfa-4fb0-aab4-5679b097d6d8.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\a3fc602e-0cfa-4fb0-aab4-5679b097d6d8.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a4044c49-e051-4ea1-ab42-ad6632f46888.jfif",
@@ -201,8 +273,16 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\a71fa750-a5a6-4300-81bf-d3bbd2cc438d.jpg"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a79bcc33-00ae-41d7-8289-6713d75abf17.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\a79bcc33-00ae-41d7-8289-6713d75abf17.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\a7b0b329-9247-4789-a9b2-68ddf7f25b5b.jfif",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\a7b0b329-9247-4789-a9b2-68ddf7f25b5b.jfif"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\ab46e256-fc30-444d-934d-32da20e1937a.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\ab46e256-fc30-444d-934d-32da20e1937a.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\b54d45bb-468e-4d84-9cd7-825545cbab84.jpg",
@@ -221,6 +301,10 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\c95b79d2-912a-4035-8faa-327f9f6b38a7.jfif"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\ca1194d4-fe2b-43cb-83fc-c051d831238d.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\ca1194d4-fe2b-43cb-83fc-c051d831238d.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\cabbe664-a415-4832-9d40-c3f5f6962b56.png",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\cabbe664-a415-4832-9d40-c3f5f6962b56.png"
     },
@@ -233,6 +317,14 @@
       "PackagePath": "staticwebassets\\Image\\Advertisement\\d0162243-116f-4195-89d4-26962a496283.jpg"
     },
     {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\d14b0d8e-ed02-4330-9e35-42455e3e2381.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\d14b0d8e-ed02-4330-9e35-42455e3e2381.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\d416d521-4748-4dec-9c09-35aad4c18178.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\d416d521-4748-4dec-9c09-35aad4c18178.jpg"
+    },
+    {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\d522c554-9943-406e-b221-c060cf0523e9.png",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\d522c554-9943-406e-b221-c060cf0523e9.png"
     },
@@ -243,6 +335,10 @@
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\f5e87ed2-425d-48a3-9fff-4f79c6a86f6a.jpg",
       "PackagePath": "staticwebassets\\Image\\Advertisement\\f5e87ed2-425d-48a3-9fff-4f79c6a86f6a.jpg"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\Image\\Advertisement\\fbfe272d-7ff4-44ad-8ffa-4e373656ae8d.jpg",
+      "PackagePath": "staticwebassets\\Image\\Advertisement\\fbfe272d-7ff4-44ad-8ffa-4e373656ae8d.jpg"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\css\\site.css",
@@ -267,6 +363,10 @@
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\datatable.js",
       "PackagePath": "staticwebassets\\js\\datatable.js"
+    },
+    {
+      "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\pagination.js",
+      "PackagePath": "staticwebassets\\js\\pagination.js"
     },
     {
       "Id": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\Employement Advertisement Portal\\wwwroot\\js\\site.js",

@@ -26,8 +26,13 @@ namespace Employement_Advertisement_Portal.Controllers
         #endregion
 
         #region Login
-        public ActionResult UserLogin()
+        [HttpGet]
+        public ActionResult UserLogin(bool showNotification = false)
         {
+            if (showNotification)
+            {
+                ViewBag.NotificationMessage = "A password reset link has been sent to your email address.";
+            }
             return View(new LoginViewModel());
         }
 
@@ -90,8 +95,13 @@ namespace Employement_Advertisement_Portal.Controllers
         #endregion
 
         #region Forget Password
-        public ActionResult ForgetPassword()
+        [HttpGet]
+        public ActionResult ForgotPassword(bool showNotification = false, string error="")
         {
+            if (showNotification)
+            {
+                ViewData["ErrorMessage"] = error;
+            }
             return View();
         }
         [HttpPost]
@@ -102,12 +112,12 @@ namespace Employement_Advertisement_Portal.Controllers
             if (isEmployeeExists)
             {
                 string token = _loginAgent.ResetPassword(email);
-                return RedirectToAction("UserLogin");
+                return RedirectToAction("UserLogin", new { showNotification = true });
 
             }
             else
             {
-                return RedirectToAction("ForgetPassword");
+                return RedirectToAction("ForgotPassword");
             }
         }
 
@@ -122,12 +132,20 @@ namespace Employement_Advertisement_Portal.Controllers
         [HttpPost]
         public ActionResult CreatePassword(LoginViewModel login)
         {
-            if(_loginAgent.CheckCredForForgetPassword(login.Email , login.Token))
+            try
             {
-                bool result = _loginAgent.UpdatePassword(login);
-                return RedirectToAction("UserLogin", new { login = login });
+                if (_loginAgent.CheckCredForForgotPassword(login.Email, login.Token))
+                {
+                    bool result = _loginAgent.UpdatePassword(login);
+                    return UserLogin(login);
+                }
+                return View();
             }
-            return View();
+            catch (Exception ex)
+            { 
+                return RedirectToAction("ForgotPassword", new { showNotification = true,error= ex.Message });
+            }
+
         }
 
 

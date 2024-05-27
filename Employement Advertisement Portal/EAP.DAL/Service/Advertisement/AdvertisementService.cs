@@ -2,12 +2,9 @@
 using EAP.Core.HelperUtilities;
 using EAP.DAL.IService.IAdvertisement;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
-using System.Text;
-using System.Threading.Tasks;
+using EAP.Core.ResourceFile;
+using Azure;
+using System.Drawing.Printing;
 
 namespace EAP.DAL.Service.Advertisement
 {
@@ -23,13 +20,59 @@ namespace EAP.DAL.Service.Advertisement
             _helperUtility = helperUtility;
         }
         #endregion
-        public List<AdvertisementDetailsTbl> GetAdvertisementList()
+        public List<AdvertisementDetailsTbl> GetAdvertisementList(int page = 0, int pageSize = 9)
         {
             using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
-                return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x=>x.Emp).Where(x=>x.IsApproved==true).ToList();
+                // Ensure page is not less than 0
+                if (page < 0)
+                {
+                    page = 0;
+                }
+                int skipCount = page * pageSize;
+                List<AdvertisementDetailsTbl> advertisementDetails = new List<AdvertisementDetailsTbl>();
+                return context.AdvertisementDetailsTbls
+                    .Include(x => x.AdvCategory)
+                    .Include(x => x.Emp)
+                    .Where(x => x.IsApproved)
+                    .OrderByDescending(x => x.CreatedBy) // Example sorting
+                    .Skip(skipCount)
+                    .Take(pageSize)
+                    .ToList();
+                //if (location != null && category != null)
+                //{
+                //    return context.AdvertisementDetailsTbls
+                //    .Include(x => x.AdvCategory)
+                //    .Include(x => x.Emp)
+                //    .Where(x => x.IsApproved)
+                //    .OrderByDescending(x => x.CreatedBy) // Example sorting
+                //    .Skip(skipCount)
+                //    .Take(pageSize)
+                //    .ToList();
+                //}
+                //else if (location != null)
+                //{
+                //    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.Location.ToLower() == location.ToLower()).OrderByDescending(x => x.CreatedBy) // Example sorting
+                //    .Skip(skipCount)
+                //    .Take(pageSize)
+                //    .ToList();
+                //}
+                //else if (category != null)
+                //{
+                //    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower()).OrderByDescending(x => x.CreatedBy) // Example sorting
+                //    .Skip(skipCount)
+                //    .Take(pageSize)
+                //    .ToList();
+                //}
+                //else
+                //{
+                //    return null;
+                //}
             }
         }
+
+
+
 
         public List<AdvertisementDetailsTbl> GetAdvertisementRequestList()
         {
@@ -90,6 +133,20 @@ namespace EAP.DAL.Service.Advertisement
                     _helperUtility.MapAuditFields(advertisementDetails, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", true);
                     context.Entry(advertisementDetails).State = EntityState.Modified;
                     context.SaveChanges();
+
+                    string subject = "Action On Created Advertisement";
+                    string approvalStatusMessage = advertisementDetails.IsApproved ? "approved" : "rejected";
+
+
+                    string body = EmailTemplate.ActionOnAdvertisement;
+                    body = body.Replace("{employeeFirstName}", advertisementDetails.Emp.FirstName)
+           .Replace("{approvalStatusMessage}", approvalStatusMessage)
+           .Replace("{adTitle}", advertisementDetails.Title)
+           .Replace("{adDescription}", advertisementDetails.Description)
+           .Replace("{createdDate}", advertisementDetails.CreatedDate.ToString())
+           .Replace("{actionDate}", advertisementDetails.ModifiedDate.ToString());
+                    _helperUtility.SendEmail(advertisementDetails.Emp.Email, "ankit@yopmail.com", subject, body);
+
                     return true;
                 }
                 return false;
@@ -156,21 +213,21 @@ namespace EAP.DAL.Service.Advertisement
             }
         }
 
-        public List<AdvertisementDetailsTbl> Search(string location, string category)
+        public List<AdvertisementDetailsTbl> Search(string location, string category,int offset, int pageSize)
         {
             using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
                 if(location!=null && category != null)
                 {
-                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower() && x.Location.ToLower() == location.ToLower()).ToList();
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower() && x.Location.ToLower() == location.ToLower()).Skip(offset).Take(pageSize).ToList();
                 }
                 else if (location != null)
                 {
-                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.Location.ToLower() == location.ToLower()).ToList();
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.Location.ToLower() == location.ToLower()).Skip(offset).Take(pageSize).ToList();
                 }
                 else if (category != null)
                 {
-                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower()).ToList();
+                    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower()).Skip(offset).Take(pageSize).ToList();
                 }
                 else
                 {

@@ -13,5 +13,7 @@ namespace EAP.ViewModel
         public string Password { get; set; } = null!;
         public string? Token { get; set; }
 
+        public string ConfirmPassword { get; set; } = null!;
+
     }
 }

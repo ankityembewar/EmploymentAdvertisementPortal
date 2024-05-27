@@ -32,9 +32,9 @@ namespace EAP.BAL.Agent.Advertisement
         #endregion
 
         #region Method
-        public List<AdvertisementViewModel> GetAdvertisementList()
+        public List<AdvertisementViewModel> GetAdvertisementList(int page = 1, int pageSize = 3)
         {
-            List<AdvertisementDetailsTbl> advertisementList= _advertiseService.GetAdvertisementList();
+            List<AdvertisementDetailsTbl> advertisementList= _advertiseService.GetAdvertisementList(page,pageSize);
             return _mapper.Map<List<AdvertisementViewModel>>(advertisementList);
         }
 
@@ -91,9 +91,9 @@ namespace EAP.BAL.Agent.Advertisement
             return _mapper.Map<AdvertisementViewModel>(advertisement);
         }
 
-        public List<AdvertisementViewModel> Search(string location, string category)
+        public List<AdvertisementViewModel> Search(string location, string category, int offset, int pageSize)
         {
-            List<AdvertisementDetailsTbl> advertisementList = _advertiseService.Search(location, category);
+            List<AdvertisementDetailsTbl> advertisementList = _advertiseService.Search(location, category,offset,pageSize);
             return _mapper.Map<List<AdvertisementViewModel>>(advertisementList);
         }
 

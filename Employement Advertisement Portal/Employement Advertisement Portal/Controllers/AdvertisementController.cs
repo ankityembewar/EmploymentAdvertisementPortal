@@ -21,11 +21,31 @@ namespace Employement_Advertisement_Portal.Controllers
             _helperUtility = helperUtility;
         }
         #endregion
-        public IActionResult List()
+        [HttpGet]
+        public IActionResult List(List<AdvertisementViewModel> advertisements)
         {
-            List<AdvertisementViewModel> advertisements = _advertiseAgent.GetAdvertisementList();
+
             return View(advertisements);
 
+        }
+
+        public IActionResult GetAdvertisements(int page = 0, int pageSize = 9)
+        {
+            var advertisements = _advertiseAgent.GetAdvertisementList(page, pageSize);
+            return PartialView("_AdvertisementsPartial", advertisements);
+        }
+
+        [HttpPost]
+        public ActionResult Search(string location, string category, int page = 1, int pageSize = 10)
+        {
+            // Calculate offset based on page number and page size
+            int offset = (page - 1) * pageSize;
+
+            // Call search method with pagination parameters
+            List<AdvertisementViewModel> advertisements = _advertiseAgent.Search(location, category, offset, pageSize);
+
+            // Return partial view or JSON data
+            return View("_AdvertisementsPartial", advertisements);
         }
 
         public ActionResult Create()
@@ -38,10 +58,39 @@ namespace Employement_Advertisement_Portal.Controllers
         [HttpPost]
         public ActionResult Create(AdvertisementViewModel advertisement, IFormFile imageFile)
         {
-            advertisement.MediaPath = _helperUtility.SaveImage(imageFile);
-            _advertiseAgent.IsAdvertisementCreated(advertisement);
-            return RedirectToAction("List");
+            advertisement.AdvertisementCategoryList = _advertiseAgent.GetAdvertisementCategoryOptions();
+            ModelState.Remove("EmployeeDetail");
+            //// Check if imageFile is not an image or null and add error message
+            if (imageFile == null)
+            {
+                ModelState["imageFile"].Errors.Clear();
+                ModelState["imageFile"].Errors.Add("This field is required.");
+            }
+            else
+            {
+                var fileExtension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    ModelState["imageFile"].Errors.Clear();
+                    ModelState["imageFile"].Errors.Add("Please upload a valid image file.");
+                }
+            }
+            if(ModelState["AdvCategoryId"].Errors.Count > 0)
+            {
+                ModelState["AdvCategoryId"].Errors.Clear();
+                ModelState["AdvCategoryId"].Errors.Add("This field is required.");
+            }
+            if (ModelState.IsValid)
+            {
+                advertisement.MediaPath = _helperUtility.SaveImage(imageFile);
+                _advertiseAgent.IsAdvertisementCreated(advertisement);
+                return RedirectToAction("List");
+            }
+
+            return View("CreateEdit", advertisement);
         }
+
 
         public ActionResult Edit(int advId)
         {
@@ -53,9 +102,21 @@ namespace Employement_Advertisement_Portal.Controllers
         [HttpPost]
         public ActionResult Edit(AdvertisementViewModel advertisement, IFormFile imageFile)
         {
-            advertisement.MediaPath = _helperUtility.SaveImage(imageFile);
-            _advertiseAgent.IsAdvertisementEdit(advertisement);
-            return RedirectToAction("UserAdvertisementList");
+            ModelState.Remove("EmployeeDetail");
+            ModelState.Remove("imageFile");
+            if (ModelState.IsValid)
+            {
+                if (imageFile != null)
+                {
+                    advertisement.MediaPath = _helperUtility.SaveImage(imageFile);
+                }
+
+                _advertiseAgent.IsAdvertisementEdit(advertisement);
+                return RedirectToAction("UserAdvertisementList");
+            }
+            return RedirectToAction("Edit", new { advId = advertisement.AdvId });
+
+
         }
 
         [HttpPost]
@@ -84,12 +145,6 @@ namespace Employement_Advertisement_Portal.Controllers
             return new JsonResult(advertisements);
         }
 
-        [HttpPost]
-        public ActionResult Search(string location, string category)
-        {
-            List<AdvertisementViewModel> advertisements = _advertiseAgent.Search(location, category);
-            return View("List", advertisements);
-        }
 
     }
 }

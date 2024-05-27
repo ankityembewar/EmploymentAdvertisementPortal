@@ -1,5 +1,6 @@
 ﻿using EAP.Core.Data;
 using EAP.Core.HelperUtilities;
+using EAP.Core.ResourceFile;
 using EAP.DAL.IService.Login;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
@@ -17,16 +18,17 @@ namespace EAP.DAL.Service.LoginService
             _helperUtility = helperUtility;
         }
 
-        public bool CheckCredForForgetPassword(string email, string token)
+        public bool CheckCredForForgotPassword(string email, string token)
         {
             try
             {
                 using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
                 {
-                    if (context.UserLoginTbls.Any(x => x.Email == email && x.Token==token))
+                    if (context.UserLoginTbls.Any(x => x.Email == email && x.Token==token && x.TokenExpiryTime > DateTime.Now &&
+                                     x.TokenExpiryTime <= DateTime.Now.AddMinutes(5)))
                         return true;
                     else
-                        throw new Exception("Invalid email or password.");
+                        throw new Exception("Invalid credentials or token.");
                 }
             }
             catch (Exception ex)
@@ -83,12 +85,15 @@ namespace EAP.DAL.Service.LoginService
                     {
                         UserLoginTbl userLogin = context.UserLoginTbls.First(x => x.Email == email);
                         userLogin.Token = token;
+                        userLogin.TokenExpiryTime = DateTime.Now.AddMinutes(5);
                         context.Entry(userLogin).State = EntityState.Modified;
                         context.SaveChanges();
                         
 
                         string subject = "Password Reset Request";
-                        string body = "<html><head><title>Password Reset Request</title></head><body><h1>Password Reset Request</h1><p>We received a request to reset your account password.</p><p>If you did not make this request, please disregard this message.</p><p>To reset your password, please follow the link below:</p><a href=\"http:/localhost:5288/Login/CreatePassword?token=" + userLogin.Token +"&email="+userLogin.Email+ "\">Reset Password</a><p>If you have any questions or need further assistance, please contact your manager or HR department.</p><p>Thank you!</p><p>This is an automated email; please do not reply to this message.</p></body></html>";
+                        string body = EmailTemplate.ResetPassword;
+                        body = body.Replace("{userLogin.Token}", userLogin.Token)
+                               .Replace("{userLogin.Email}", userLogin.Email);
                         _helperUtility.SendEmail(userLogin.Email, "ankit@yopmail.com", subject, body);
 
                         return true;

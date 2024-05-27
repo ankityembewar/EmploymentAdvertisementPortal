@@ -21,7 +21,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("EmployeeAdvertisementPortalContext") ?? throw new InvalidOperationException("Connection string 'EmployeeAdvertisementPortalContext' not found.");
 
-builder.Services.AddDbContext<EmployeeAdvertisementPortalContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<EmployeeAdvertisementPortalContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+    //options.UseLazyLoadingProxies();
+});
+
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://code.jquery.com") // Replace with the origin of your jQuery script
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -78,6 +94,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("AllowSpecificOrigin");
 
 // Use session middleware.
 app.UseSession();

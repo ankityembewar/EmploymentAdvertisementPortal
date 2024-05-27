@@ -15,11 +15,14 @@ namespace EAP.ViewModel
         public int EmpId { get; set; }
 
         [StringLength(80, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [Required(ErrorMessage = "This field is required.")]
         public string Title { get; set; }
 
         [StringLength(500, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [Required(ErrorMessage = "This field is required.")]
         public string Description { get; set; } = null!;
-
+       
+        [Required(ErrorMessage = "This field is required.")]
         public int Price { get; set; }
 
         public int PostedBy { get; set; }
@@ -32,8 +35,10 @@ namespace EAP.ViewModel
 
         public DateTime ModifiedDate { get; set; }
 
+        [Required(ErrorMessage = "This field is required.")]
         public string Location { get; set; } = null!;
 
+        [Required(ErrorMessage = "This field is required.")]
         public int AdvCategoryId { get; set; }
 
         public bool IsApproved { get; set; }

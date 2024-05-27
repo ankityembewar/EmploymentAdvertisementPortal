@@ -20,9 +20,9 @@ namespace EAP.BAL.Agent.Login
             _loginService = loginService;
         }
 
-        public bool CheckCredForForgetPassword(string email, string token)
+        public bool CheckCredForForgotPassword(string email, string token)
         {
-            return _loginService.CheckCredForForgetPassword(email, token);
+            return _loginService.CheckCredForForgotPassword(email, token);
         }
         #endregion
 

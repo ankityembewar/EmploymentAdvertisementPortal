@@ -4,10 +4,10 @@
     }
 }
 
-function initializeEmployeeDataTable() {
-    $(document).ready(function () {
-        $('#employeeTable').DataTable({
-            // DataTables options
-        });
-    });
-}
+//function initializeEmployeeDataTable() {
+//    $(document).ready(function () {
+//        $('#employeeTable').DataTable({
+//            // DataTables options
+//        });
+//    });
+//}

@@ -15,7 +15,7 @@ namespace EAP.BAL.IAgent.ILogin
 
         string ResetPassword(string email);
 
-        bool CheckCredForForgetPassword(string email, string token);
+        bool CheckCredForForgotPassword(string email, string token);
 
         bool UpdatePassword(LoginViewModel login);
     }

@@ -28,7 +28,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
     public virtual DbSet<UserRoleTbl> UserRoleTbls { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AQJSKH\\MSSQLSERVER1;Initial Catalog=Employee_Advertisement_Portal;Trusted_Connection=True;Trust Server Certificate=True");
+       => optionsBuilder.UseSqlServer("Data Source=DESKTOP-7AQJSKH\\MSSQLSERVER1;Initial Catalog=Employee_Advertisement_Portal;Trusted_Connection=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,14 +49,14 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
 
             entity.ToTable("AdvertisementDetails_tbl");
 
-            entity.Property(e => e.CreatedDate).HasColumnType("date");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(500)
                 .IsUnicode(false);
             entity.Property(e => e.Location)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.ModifiedDate).HasColumnType("date");
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             entity.Property(e => e.Title)
                 .HasMaxLength(80)
                 .IsUnicode(false);
@@ -81,7 +81,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
             entity.Property(e => e.Address)
                 .HasMaxLength(30)
                 .IsUnicode(false);
-            entity.Property(e => e.CreatedDate).HasColumnType("date");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.Dob)
                 .HasColumnType("date")
                 .HasColumnName("DOB");
@@ -97,7 +97,7 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
             entity.Property(e => e.LastName)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.ModifiedDate).HasColumnType("date");
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Role).WithMany(p => p.EmployeeDetailsTbls)
                 .HasForeignKey(d => d.RoleId)
@@ -121,15 +121,16 @@ public partial class EmployeeAdvertisementPortalContext : DbContext
 
             entity.ToTable("UserLogin_tbl");
 
-            entity.Property(e => e.CreatedDate).HasColumnType("date");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.ModifiedDate).HasColumnType("date");
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             entity.Property(e => e.Password)
                 .HasMaxLength(20)
                 .IsUnicode(false);
             entity.Property(e => e.Token).IsUnicode(false);
+            entity.Property(e => e.TokenExpiryTime).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<UserRoleTbl>(entity =>

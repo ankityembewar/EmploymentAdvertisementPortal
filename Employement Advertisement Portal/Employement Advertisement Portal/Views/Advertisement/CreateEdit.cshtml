@@ -1,12 +1,13 @@
 ﻿@model EAP.ViewModel.AdvertisementViewModel
 @{
     ViewData["Title"] = "Create Advertisement";
+    var modelState = ViewData.ModelState;
 }
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="card" style="width: 70%;">
         <div class="card-header">
-            <h5>@(Model.AdvId == 0 ? "Add Advertisement" : "Update Advertisement")</h5>
+            <h5>@(Model.AdvId == 0 ? "Create Advertisement" : "Update Advertisement")</h5>
         </div>
         <div class="card-body">
             <form id="createEditAdvertiseForm" enctype="multipart/form-data">
@@ -40,7 +41,25 @@
                             <label asp-for="MediaPath" class="control-label">Upload Image</label>
 
                             <!-- File input for selecting the file -->
-                            <input type="file" name="imageFile" class="form-control" id="fileInput" required />
+                            <input type="file" name="imageFile" class="form-control" id="fileInput"
+                                   value="@(!string.IsNullOrEmpty(Model.MediaPath) ? new System.IO.FileInfo(Model.MediaPath).Name : "")" />
+
+                            @* <script>
+                                window.addEventListener('DOMContentLoaded', function () {
+                                    setDefaultFileValue('@Model.MediaPath');
+                                });
+
+                                function setDefaultFileValue(mediaPath) {
+                                    var fileInput = document.getElementById('fileInput');
+                                    var fileNameDisplay = document.getElementById('fileNameDisplay');
+                                    if (mediaPath) {
+                                        // Display the file name
+                                        fileNameDisplay.innerText = mediaPath.split("\\").pop();
+                                        // Display the image if available
+                                        document.getElementById('uploadedImage').src = mediaPath;
+                                    }
+                                }
+                            </script> *@
 
                             <!-- Span to display the file name from MediaPath -->
                             @if (!string.IsNullOrEmpty(Model.MediaPath))
@@ -48,11 +67,18 @@
                                 <span id="fileName" class="form-text" style="margin-left: 10px;">
                                     @(new System.IO.FileInfo(Model.MediaPath).Name)
                                 </span>
+
+                                <!-- Display the image -->
+                                <img src="@Model.MediaPath" alt="Uploaded Image" style="max-width: 100%; margin-top: 10px;" />
                             }
 
-                            <!-- Validation message for MediaPath -->
-                            <span asp-validation-for="MediaPath" class="text-danger"></span>
+                            @if (!modelState.IsValid && modelState.ContainsKey("imageFile"))
+                            {
+                                <span class="text-danger">@Html.ValidationMessage("imageFile")</span>
+                            }
                         </div>
+
+
                         <div class="form-group">
                             <label asp-for="AdvCategoryId" class="control-label">Category</label>
                             @Html.DropDownListFor(model => model.AdvCategoryId, new SelectList(Model.AdvertisementCategoryList, "Value", "Text"), "-- Select Role --", new { @class = "form-control" })
@@ -67,15 +93,16 @@
                 @Html.HiddenFor(x => x.ModifiedDate)
                 @Html.HiddenFor(x => x.ModifiedBy)
                 @Html.HiddenFor(x => x.AdvertisementCategoryList)
+                @Html.HiddenFor(x => x.MediaPath)
+
                 <!-- Other hidden fields can be added here -->
             </form>
            </div>
         <div class="card-footer">
             <div class="text-center">
-                <a asp-action="Index" class="btn btn-secondary mr-2">Back to List</a>
+                <a class="btn btn-secondary mr-2" href="@Url.Action("List", "Advertisement")">Back to List</a>
                 <button type="submit" onclick="submitAdvertisementForm()" form="createEditForm" class="btn btn-success">Save</button>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -83,6 +110,10 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/advertisement.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src = "~/js/advertisement.js"></script>
+        <script src = "~/js/advertisementReqDataTable.js" ></script >
+    }
+    
 }

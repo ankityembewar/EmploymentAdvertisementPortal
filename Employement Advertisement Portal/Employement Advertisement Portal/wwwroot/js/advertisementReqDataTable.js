@@ -57,6 +57,7 @@ function OnSuccess(response) {
     if ($.fn.DataTable.isDataTable('#advertisementReqTable')) {
         $('#advertisementReqTable').DataTable().destroy();
     }
+    const currentUrl = window.location.href;
     $('#advertisementReqTable').DataTable({
         bProcessing: true,
         bLengthChange: true,
@@ -162,19 +163,26 @@ function OnSuccess(response) {
                     // Variable to hold the final HTML content
                     let actionHtml;
 
-                    // Check if the logged-in user's role is not 'Admin'
-                    if ($('#loginedRole').val() !== "Admin") {
-                        // If not 'Admin', include both edit and delete icons
+                    // Check if the URL contains "Advertisement/UserAdvertisementList"
+                    if (currentUrl.includes("Advertisement/UserAdvertisementList")) {
                         actionHtml = '<a href="#" onclick="editAdvertisement(' + row.advId + ')">' +
                             '<i class="fa-solid fa-user-pen" style="color: #05a31f;"></i></a>&nbsp;&nbsp;' +
                             '<a href="#" onclick="deleteAdvertisement(' + row.advId + ')">' +
                             '<i class="fa-solid fa-trash" style="color: #f00540;"></i></a>';
                     } else {
-                        // If the role is 'Admin', center the delete icon in the column
-                        actionHtml = '<div style="text-align: center;">' +
-                            '<a href="#" onclick="deleteAdvertisement(' + row.advId + ')">' +
-                            '<i class="fa-solid fa-trash" style="color: #f00540;"></i></a></div>';
+                        // Role check for non-"UserAdvertisementList" URLs
+                        if ($('#loginedRole').val() !== "Admin") {
+                            actionHtml = '<a href="#" onclick="editAdvertisement(' + row.advId + ')">' +
+                                '<i class="fa-solid fa-user-pen" style="color: #05a31f;"></i></a>&nbsp;&nbsp;' +
+                                '<a href="#" onclick="deleteAdvertisement(' + row.advId + ')">' +
+                                '<i class="fa-solid fa-trash" style="color: #f00540;"></i></a>';
+                        } else {
+                            actionHtml = '<div style="text-align: center;">' +
+                                '<a href="#" onclick="deleteAdvertisement(' + row.advId + ')">' +
+                                '<i class="fa-solid fa-trash" style="color: #f00540;"></i></a></div>';
+                        }
                     }
+
 
                     // Return the final HTML content for the cell
                     return actionHtml;
@@ -434,6 +442,7 @@ function editAdvertisement(advId) {
         type: 'GET',
         data: { advId: advId },
         success: function (response) {
+            debugger
             if (response) {
                 $('#editAdvertisement').html(response).removeClass('d-none');
             }
@@ -447,6 +456,7 @@ function editAdvertisement(advId) {
         }
     });
 }
+
 
 // Function to handle deleting an employee
 function deleteAdvertisement(advId) {
