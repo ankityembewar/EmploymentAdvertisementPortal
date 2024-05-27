@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EAP.BAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f324bdb16105075ac1fc71acd847a49a71ef6c32")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+864e817611a4db7927a9e0864715479b329d2cd4")]
 [assembly: System.Reflection.AssemblyProductAttribute("EAP.BAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EAP.BAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

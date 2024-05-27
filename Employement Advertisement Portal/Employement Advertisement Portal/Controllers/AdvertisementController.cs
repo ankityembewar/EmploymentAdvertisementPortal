@@ -36,7 +36,7 @@ namespace Employement_Advertisement_Portal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(string location, string category, int page = 1, int pageSize = 10)
+        public ActionResult Search(string location, string category, int page = 0, int pageSize = 10)
         {
             // Calculate offset based on page number and page size
             int offset = (page - 1) * pageSize;
@@ -45,7 +45,7 @@ namespace Employement_Advertisement_Portal.Controllers
             List<AdvertisementViewModel> advertisements = _advertiseAgent.Search(location, category, offset, pageSize);
 
             // Return partial view or JSON data
-            return View("_AdvertisementsPartial", advertisements);
+            return PartialView("_AdvertisementsPartial", advertisements);
         }
 
         public ActionResult Create()

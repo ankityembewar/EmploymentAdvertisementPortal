@@ -231,7 +231,14 @@ namespace EAP.DAL.Service.Advertisement
                 }
                 else
                 {
-                    return null;
+                    return context.AdvertisementDetailsTbls
+                    .Include(x => x.AdvCategory)
+                    .Include(x => x.Emp)
+                    .Where(x => x.IsApproved)
+                    .OrderByDescending(x => x.CreatedBy) // Example sorting
+                    .Skip(offset)
+                    .Take(pageSize)
+                    .ToList();
                 }
 
             }
