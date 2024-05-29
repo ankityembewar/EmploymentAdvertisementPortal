@@ -30,7 +30,7 @@ function GetAdvertisementRequest(selectedChartType) {
             dataType: 'json',
             success: function (response) {
                 OnSuccess(response);
-                renderChart(response, selectedChartType);
+                /*renderChart(response, selectedChartType);*/
             }
 
         })
@@ -45,7 +45,7 @@ function GetAdvertisementRequest(selectedChartType) {
             dataType: 'json',
             success: function (response) {
                 OnSuccess(response);
-                renderChart(response, selectedChartType);
+                /*renderChart(response, selectedChartType);*/
             },
         })
     }
@@ -65,17 +65,14 @@ function OnSuccess(response) {
         bFilter: true,
         bSort: true,
         bPaginate: true,
+        scrollX: false, 
+        scrollY: false, 
         "columnDefs": [
-            { "className": "dt-center", "targets": "_all" } // Center-align all columns
+            { "className": "dt-center", "targets": "_all" }, // Center-align all columns
+            { "orderable": false, "targets": [6,7, 8] } // Disable sorting for columns with indexes 6, 8
         ],
         data: response,
         columns: [
-            {
-                data: "AdvId",
-                render: function (data, type, row, meta) {
-                    return row.advId
-                }
-            },
             {
                 data: "Title",
                 render: function (data, type, row, meta) {
@@ -137,23 +134,23 @@ function OnSuccess(response) {
 
                     // Create radio buttons with icons for isApproved and isRejected
                     return `
-            <div style="display: flex; align-items: center;">
-                <input type="radio" id="isApproved_${row.advId}" name="decision_${row.advId}" value="approved"
-                       ${row.isApproved ? 'checked' : ''} 
-                       ${isDisabled ? 'disabled' : ''}
-                       onclick="handleDecisionChange(${row.advId}, 'approved')">
-                <label for="isApproved_${row.advId}" style="margin-right: 10px;">
-                    <i class="fa fa-check" style="color: #05a31f;" title="Approve Employee"></i>
-                </label>
+            <div style="display: flex; align-items: center; justify-content: center;">
+    <input type="radio" id="isApproved_${row.advId}" name="decision_${row.advId}" value="approved"
+           ${row.isApproved ? 'checked' : ''} 
+           ${isDisabled ? 'disabled' : ''}
+           onclick="handleDecisionChange(${row.advId}, 'approved')">
+    <label for="isApproved_${row.advId}" style="margin-right: 10px;">
+        <i class="fa fa-check" style="color: #05a31f;" title="Approve Employee"></i>
+    </label>
 
-                <input type="radio" id="isRejected_${row.advId}" name="decision_${row.advId}" value="rejected"
-                       ${row.isRejected ? 'checked' : ''} 
-                       ${isDisabled ? 'disabled' : ''}
-                       onclick="handleDecisionChange(${row.advId}, 'rejected')">
-                <label for="isRejected_${row.advId}">
-                    <i class="fa fa-times" style="color: #f00540;" title="Reject Employee"></i>
-                </label>
-            </div>`
+    <input type="radio" id="isRejected_${row.advId}" name="decision_${row.advId}" value="rejected"
+           ${row.isRejected ? 'checked' : ''} 
+           ${isDisabled ? 'disabled' : ''}
+           onclick="handleDecisionChange(${row.advId}, 'rejected')">
+    <label for="isRejected_${row.advId}">
+        <i class="fa fa-times" style="color: #f00540;" title="Reject Employee"></i>
+    </label>
+</div>`
                 }
             },
             {
@@ -246,6 +243,105 @@ function toggleApproval(option, createdDate) {
         console.log(`Employee with createdDate ${createdDate} is rejected.`);
     }
 }
+function generateDropdownItems() {
+    $('#advertcolumnDropdownMenu').empty(); // Clear existing items
+    // Loop through all columns in the DataTable
+    $('#advertisementReqTable').DataTable().columns().every(function (index) {
+        var columnName = this.header().textContent.trim(); // Get the column name
+        // Skip if the column is for actions (identified by the 'no-export' class)
+        if (!$(this.header()).hasClass('no-export')) {
+            // Determine if the column is currently visible
+            var columnVisible = this.visible();
+            // Create HTML for a dropdown item with a checkbox for each column
+            var checkboxHtml = '<label class="dropdown-item"><input type="checkbox" class="columnCheckbox" data-column="' + index + '" ' + (columnVisible ? 'checked' : '') + '>' + columnName + '</label>';
+            // Append the dropdown item HTML to the dropdown menu
+            $('#advertcolumnDropdownMenu').append(checkboxHtml);
+        }
+    });
+}
+
+function toggleDropdownAndGenerateItems() {
+    $('#advertcolumnDropdownMenu').toggle(); // Toggle dropdown visibility
+    generateDropdownItems(); // Generate dropdown items
+}
+
+function handleDecisionChange(rowId, decision) {
+    
+    $.ajax({
+        url: '/Admin/ActionOnAdvertisement',
+        type: 'POST',
+        data: {
+            advId: rowId, // sending rowId as advId
+            decision: decision // sending the decision
+        },
+        dataType: 'json', // change 'bool' to 'json' for clarity
+        success: function (response) {
+            // Check if response is valid before proceeding
+            if (response) {
+                showNotification("Advertisement updated successfully", "success")
+                /*GetAdvertisementRequest()*/
+            } else {
+                showNotification("Failed to update", "error")
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // Handle AJAX request errors
+            console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
+        }
+    });
+}
+
+function showNotification(message, type = 'info') {
+    // Create jQuery alert element with the specified message and type
+    var alertMessage = $('<div class="alert alert-sm text-center" role="alert"></div>').addClass('alert-' + type).text(message);
+
+    // Prepend the alert message to the header
+    $('header').prepend(alertMessage);
+
+    // Remove the alert after a certain period
+    setTimeout(function () {
+        alertMessage.remove();
+    }, 3000); // Remove after 3 seconds (adjust as needed)
+}
+
+
+function handleCheckboxChange() {
+    var columnIndex = $(this).data('column');
+    var column = $('#advertisementReqTable').DataTable().column(columnIndex);
+
+    var allUnchecked = $('.columnCheckbox').filter(':checked').length === 0;
+
+    if (allUnchecked) {
+        showNotification('Please ensure at least one column is visible.', "error"); // Display alert message
+    } else {
+        // Toggle the visibility of the column based on checkbox state
+        column.visible($(this).is(':checked'));
+    }
+}
+
+// Function to handle editing an employee
+function editAdvertisement(advId) {
+    $('#advertisementReqListView').remove();
+    // Send AJAX request to the server
+    $.ajax({
+        url: '/advertisement/edit',
+        type: 'GET',
+        data: { advId: advId },
+        success: function (response) {
+            debugger
+            if (response) {
+                $('#editAdvertisement').html(response).removeClass('d-none');
+            }
+            else {
+                showNotification("An error occurred while loading the edit view.", "error");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading edit view:', error);
+            showNotification("An error occurred while loading the edit view.", "error");
+        }
+    });
+}
 
 function renderChart(response, selectedChart) {
     var categorySet = new Set();
@@ -325,160 +421,153 @@ function renderChart(response, selectedChart) {
             }
         };
     }
+    $('#confirmationModalBody').text("");
+    
+    var chartContainer = document.getElementById("chartContainer");
+    // Check if chartContainer is not present
+    if (!chartContainer) {
+        // Select the element with id "confirmationModalBody"
+        var confirmationModalBody = document.getElementById("confirmationModalBody");
+
+        // Create the new element
+        var newChartContainer = document.createElement("div");
+        newChartContainer.id = "chartContainer";
+
+        // Insert the new element just below the "confirmationModalBody"
+        confirmationModalBody.insertAdjacentElement("afterend", newChartContainer);
+    }
 
     Highcharts.chart('chartContainer', commonOptions);
 }
 
-function generateDropdownItems() {
-    $('#advertcolumnDropdownMenu').empty(); // Clear existing items
-    // Loop through all columns in the DataTable
-    $('#advertisementReqTable').DataTable().columns().every(function (index) {
-        var columnName = this.header().textContent.trim(); // Get the column name
-        // Skip if the column is for actions (identified by the 'no-export' class)
-        if (!$(this.header()).hasClass('no-export')) {
-            // Determine if the column is currently visible
-            var columnVisible = this.visible();
-            // Create HTML for a dropdown item with a checkbox for each column
-            var checkboxHtml = '<label class="dropdown-item"><input type="checkbox" class="columnCheckbox" data-column="' + index + '" ' + (columnVisible ? 'checked' : '') + '>' + columnName + '</label>';
-            // Append the dropdown item HTML to the dropdown menu
-            $('#advertcolumnDropdownMenu').append(checkboxHtml);
-        }
-    });
-}
+var isAlertDisplayed = false;
 
-function toggleDropdownAndGenerateItems() {
-    $('#advertcolumnDropdownMenu').toggle(); // Toggle dropdown visibility
-    generateDropdownItems(); // Generate dropdown items
-}
+function handleChartButtonClick() {
+    // Check if an alert is already being displayed
+    if (isAlertDisplayed) {
+        return;
+    }
 
-function handleDecisionChange(rowId, decision) {
-    
-    $.ajax({
-        url: '/Admin/ActionOnAdvertisement',
-        type: 'POST',
-        data: {
-            advId: rowId, // sending rowId as advId
-            decision: decision // sending the decision
-        },
-        dataType: 'json', // change 'bool' to 'json' for clarity
-        success: function (response) {
-            // Check if response is valid before proceeding
-            if (response) {
-                GetAdvertisementRequest()
-                showNotification("Advertisement updated successfully","success")
+    fetchAdvertisementRequestData()
+        .then(function (response) {
+            if (Array.isArray(response) && response.length > 0) {
+                renderChart(response, $('#advertisechartType').val());
+                if ($('#chartContainer').is(':hidden')) {
+                    $('#chartContainer').show();
+                }
+
+                if ($('#chartContainer').length > 0) {
+                    $('#confirmationModalLabel').text('Advertisement Category');
+                    $('#confirmActionBtn').hide();
+                }
+                $('#confirmationModal').modal('show');
             } else {
-                showNotification("Failed to update", "error")
+                // Display an alert indicating no advertisement record
+                var alertMessage = $('<div class="alert alert-danger alert-sm text-center" role="alert">No advertisement records found.</div>'); // Added alert-sm for small width
+                $('header').prepend(alertMessage);
+                isAlertDisplayed = true; // Set flag to true
+                setTimeout(function () {
+                    alertMessage.fadeOut('slow', function () {
+                        $(this).remove();
+                        isAlertDisplayed = false; // Reset flag to false
+                    });
+                }, 3000); // Hide after 3 seconds
             }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            // Handle AJAX request errors
-            console.error(`AJAX request failed: ${textStatus}, ${errorThrown}`);
-        }
-    });
+        })
+        .catch(function (error) {
+            console.error('Error fetching advertisement request data:', error);
+            isAlertDisplayed = false; // Reset flag in case of error
+        });
 }
 
-function showNotification(message, type = 'info') {
-    // Create a notification element with the Bootstrap alert style based on the type
-    var notification = document.createElement('div');
-    notification.className = 'alert';
 
-    // Set the alert class based on the type
-    switch (type) {
-        case 'success':
-            notification.classList.add('alert-success');
-            break;
-        case 'error':
-            notification.classList.add('alert-danger');
-            break;
-        case 'info':
-            notification.classList.add('alert-info');
-            break;
-        default:
-            notification.classList.add('alert-info');
-            break;
-    }
+// Function to fetch advertisement request data
+function fetchAdvertisementRequestData() {
+    var url = ($('#loginedRole').val() === "Admin" && window.location.pathname !== '/Advertisement/UserAdvertisementList') ?
+        '/Admin/GetAdvertisementRequest' :
+        '/Advertisement/GetUserAdvertisementList';
 
-    notification.setAttribute('role', 'alert');
-
-    // Add the message to the notification
-    notification.textContent = message;
-
-    // Position the notification at the top of the page
-    notification.style.position = 'fixed';
-    notification.style.top = '0';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.zIndex = '1000'; // Ensure it appears above other elements
-
-    // Append the notification to the document body
-    document.body.appendChild(notification);
-
-    // Remove the notification after a certain period
-    setTimeout(function () {
-        notification.remove();
-    }, 3000); // Remove after 3 seconds (adjust as needed)
-}
-
-function handleCheckboxChange() {
-    var columnIndex = $(this).data('column');
-    var column = $('#advertisementReqTable').DataTable().column(columnIndex);
-
-    var allUnchecked = $('.columnCheckbox').filter(':checked').length === 0;
-
-    if (allUnchecked) {
-        showNotification('Please ensure at least one column is visible.', "error"); // Display alert message
-    } else {
-        // Toggle the visibility of the column based on checkbox state
-        column.visible($(this).is(':checked'));
-    }
-}
-
-// Function to handle editing an employee
-function editAdvertisement(advId) {
-    $('#advertisementReqListView').remove();
-    // Send AJAX request to the server
-    $.ajax({
-        url: '/advertisement/edit',
+    return $.ajax({
+        url: url,
         type: 'GET',
-        data: { advId: advId },
-        success: function (response) {
-            debugger
-            if (response) {
-                $('#editAdvertisement').html(response).removeClass('d-none');
-            }
-            else {
-                showNotification("An error occurred while loading the edit view.", "error");
-            }
-        },
-        error: function (xhr, status, error) {
-            console.error('Error loading edit view:', error);
-            showNotification("An error occurred while loading the edit view.", "error");
-        }
+        data: ($('#loginedRole').val() === "Admin") ? {} : { empId: $('#userId').val() },
+        dataType: 'json'
     });
 }
 
+// Your existing JavaScript code here
+// You can place other functions or code directly here.
 
-// Function to handle deleting an employee
+
+$('#confirmationModal' + ' #closeConfirmationModalBtn').on('click', function () {
+    $('#confirmationModal').modal('hide'); // Hide the modal when the close button is clicked
+});
+
+// Function to show a generic confirmation modal
+// Function to show a generic confirmation modal
+function showConfirmationModal(title, message, confirmButtonText, confirmCallback, data) {
+    // Set modal title and message
+    $('#confirmationModalLabel').text(title);
+    $('#confirmationModalBody').text(message);
+    // Update confirm button text
+    $('#confirmActionBtn').text(confirmButtonText);
+    $('#confirmActionBtn').show();
+    // Store callback function and data in modal data attributes
+    $('#confirmActionBtn').data('callback', confirmCallback);
+    $('#confirmActionBtn').data('data', data);
+    $('#chartContainer').hide();
+
+    // Show the modal
+    $('#confirmationModal').modal('show');
+
+    // Bind click event to confirmation button
+    $('#confirmActionBtn').off('click').on('click', function () {
+        var callback = $(this).data('callback');
+        var data = $(this).data('data');
+        if (typeof callback === 'function') {
+            callback(data);
+        }
+        $('#confirmationModal').modal('hide');
+    });
+
+    // Bind click event to close button
+    $('#closeConfirmationModalBtn').off('click').on('click', function () {
+        $('#confirmationModal').modal('hide');
+    });
+}
+
+// Rest of your code remains the same
+
 function deleteAdvertisement(advId) {
-    // Send AJAX request to the server
+    var title = 'Confirm Delete';
+    var message = 'Are you sure you want to delete this advertisement?';
+    var confirmButtonText = 'Delete';
+    var confirmCallback = performAdvertisementDelete;
+    var data = { advId: advId };
+    // Show the confirmation modal
+    showConfirmationModal(title, message, confirmButtonText, confirmCallback, data);
+}
+
+// Function to perform the advertisement delete
+function performAdvertisementDelete(data) {
+    var advId = data.advId;
+    // Send AJAX request to the server to delete the advertisement
     $.ajax({
         url: '/advertisement/delete',
         type: 'POST',
         data: { advId: advId },
         success: function (response) {
             if (response.success) {
-                showNotification("Record delete successfully.", "success")
+                showNotification("Record deleted successfully.", "success");
+            } else {
+                showNotification("Failed to delete record", "error");
             }
-            else {
-                showNotification("Failed to delete record", "error")
-            }
-            GetAdvertisementRequest();
+            /*GetAdvertisementRequest();*/ // Refresh advertisement data
         },
         error: function (xhr, status, error) {
-            console.error('Error deleting employee:', error);
+            console.error('Error deleting advertisement:', error);
         }
     });
 }
-
 
 

@@ -80,7 +80,10 @@
         <main role="main" class="pb-3">
             @Html.Hidden("loginedRole",claimedRole)
             @Html.Hidden("userId", userId)
-            @RenderBody()
+            <div class="w-100 mx-auto">
+                <!-- This will make the content take 75% width and center it -->
+                @RenderBody()
+            </div>
         </main>
     </div>
 

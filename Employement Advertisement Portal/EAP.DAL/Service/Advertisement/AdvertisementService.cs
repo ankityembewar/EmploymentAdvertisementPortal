@@ -34,40 +34,12 @@ namespace EAP.DAL.Service.Advertisement
                 return context.AdvertisementDetailsTbls
                     .Include(x => x.AdvCategory)
                     .Include(x => x.Emp)
-                    .Where(x => x.IsApproved)
+                    .Where(x => x.IsApproved && x.EmpId != _helperUtility.GetEmployeeId())
                     .OrderByDescending(x => x.CreatedBy) // Example sorting
                     .Skip(skipCount)
                     .Take(pageSize)
                     .ToList();
-                //if (location != null && category != null)
-                //{
-                //    return context.AdvertisementDetailsTbls
-                //    .Include(x => x.AdvCategory)
-                //    .Include(x => x.Emp)
-                //    .Where(x => x.IsApproved)
-                //    .OrderByDescending(x => x.CreatedBy) // Example sorting
-                //    .Skip(skipCount)
-                //    .Take(pageSize)
-                //    .ToList();
-                //}
-                //else if (location != null)
-                //{
-                //    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.Location.ToLower() == location.ToLower()).OrderByDescending(x => x.CreatedBy) // Example sorting
-                //    .Skip(skipCount)
-                //    .Take(pageSize)
-                //    .ToList();
-                //}
-                //else if (category != null)
-                //{
-                //    return context.AdvertisementDetailsTbls.Include(x => x.AdvCategory).Include(x => x.Emp).Where(x => x.AdvCategory.Category.ToLower() == category.ToLower()).OrderByDescending(x => x.CreatedBy) // Example sorting
-                //    .Skip(skipCount)
-                //    .Take(pageSize)
-                //    .ToList();
-                //}
-                //else
-                //{
-                //    return null;
-                //}
+                
             }
         }
 
@@ -235,7 +207,7 @@ namespace EAP.DAL.Service.Advertisement
                     .Include(x => x.AdvCategory)
                     .Include(x => x.Emp)
                     .Where(x => x.IsApproved)
-                    .OrderByDescending(x => x.CreatedBy) // Example sorting
+                    .OrderByDescending(x => x.AdvId) // Example sorting
                     .Skip(offset)
                     .Take(pageSize)
                     .ToList();
