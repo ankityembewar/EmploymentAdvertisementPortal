@@ -29,7 +29,7 @@ function GetEmployeeList(selectedChartType) {
         dataType: 'json',
         success: function (response) {
             OnSuccess(response);
-            renderChart(response, selectedChartType);
+            /*renderChart(response, selectedChartType);*/
         }
 
     })
@@ -74,22 +74,27 @@ function OnSuccess(response) {
                     return row.email
                 }
             },
-            //{
-            //    data: "Gender",
-            //    render: function (data, type, row, meta) {
-            //        return row.gender
-            //    }
-            //},
-            //{
-            //    data: "Dob",
-            //    title: "Birth Date",
-            //    render: function (data, type, row, meta) {
-            //        var dob = new Date(row.dob);
-            //        // Format the date as a string without the time
-            //        var formattedDate = dob.toLocaleDateString();
-            //        return formattedDate;
-            //    }
-            //},
+            {
+                data: "Gender",
+                render: function (data, type, row, meta) {
+                    if (row.gender === 0) {
+                        return "MALE";
+                    }
+                    else {
+                        return "FEMALE";
+                    }
+                }
+            },
+            {
+                data: "Dob",
+                title: "Birth Date",
+                render: function (data, type, row, meta) {
+                    var dob = new Date(row.dob);
+                    // Format the date as a string without the time
+                    var formattedDate = dob.toLocaleDateString();
+                    return formattedDate;
+                }
+            },
             {
                 data: "EmployeeRole",
                 title: "Role",
@@ -163,51 +168,22 @@ function handleCheckboxChange() {
     var allUnchecked = $('.columnCheckbox').filter(':checked').length === 0;
    
     if (allUnchecked) {
-        showNotification('Please ensure at least one column is visible.',"error"); // Display alert message
+        showNotification('Please ensure at least one column is visible.',"danger"); // Display alert message
     } else {
         // Toggle the visibility of the column based on checkbox state
         column.visible($(this).is(':checked'));
     }
 }
 function showNotification(message, type = 'info') {
-    // Create a notification element with the Bootstrap alert style based on the type
-    var notification = document.createElement('div');
-    notification.className = 'alert';
+    // Create jQuery alert element with the specified message and type
+    var alertMessage = $('<div class="alert alert-sm text-center" role="alert"></div>').addClass('alert-' + type).text(message);
 
-    // Set the alert class based on the type
-    switch (type) {
-        case 'success':
-            notification.classList.add('alert-success');
-            break;
-        case 'error':
-            notification.classList.add('alert-danger');
-            break;
-        case 'info':
-            notification.classList.add('alert-info');
-            break;
-        default:
-            notification.classList.add('alert-info');
-            break;
-    }
+    // Prepend the alert message to the header
+    $('header').prepend(alertMessage);
 
-    notification.setAttribute('role', 'alert');
-
-    // Add the message to the notification
-    notification.textContent = message;
-
-    // Position the notification at the top of the page
-    notification.style.position = 'fixed';
-    notification.style.top = '0';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.zIndex = '1000'; // Ensure it appears above other elements
-
-    // Append the notification to the document body
-    document.body.appendChild(notification);
-
-    // Remove the notification after a certain period
+    // Remove the alert after a certain period
     setTimeout(function () {
-        notification.remove();
+        alertMessage.remove();
     }, 3000); // Remove after 3 seconds (adjust as needed)
 }
 function toggleDropdownAndGenerateItems() {
@@ -272,7 +248,7 @@ function renderChart(response, selectedChart) {
             }
         },
         series: [{
-            name: 'Number of Employees',
+            name: 'Role',
             colorByPoint: true,
             data: roleData
         }]
@@ -307,7 +283,21 @@ function renderChart(response, selectedChart) {
             }
         };
     }
+    $('#confirmationModalBody').text("");
 
+    var chartContainer = document.getElementById("chartContainer");
+    // Check if chartContainer is not present
+    if (!chartContainer) {
+        // Select the element with id "confirmationModalBody"
+        var confirmationModalBody = document.getElementById("confirmationModalBody");
+
+        // Create the new element
+        var newChartContainer = document.createElement("div");
+        newChartContainer.id = "chartContainer";
+
+        // Insert the new element just below the "confirmationModalBody"
+        confirmationModalBody.insertAdjacentElement("afterend", newChartContainer);
+    }
     Highcharts.chart('chartContainer', commonOptions);
 }
 
@@ -324,39 +314,192 @@ function editEmployee(empId) {
                 $('#editEmployeeView').html(response).removeClass('d-none');
             }
             else {
-                showNotification("An error occurred while loading the edit view.", "error");
+                showNotification("An error occurred while loading the edit view.", "danger");
             }
         },
         error: function (xhr, status, error) {
-            console.error('Error loading edit view:', error);
-            showNotification("An error occurred while loading the edit view.", "error");
+            showNotification("An error occurred while loading the edit view.", "danger");
         }
     });
 }
 
 // Function to handle deleting an employee
-function deleteEmployee(empId) {
-    // Send AJAX request to the server
-    $.ajax({
-        url: '/admin/deleteEmployee', 
-        type: 'POST', 
-        data: { empId: empId },
-        success: function (response) {
-            if (response.success) {
-                showNotification("Record delete successfully.", "success")
+//function deleteEmployee(empId) {
+//    // Send AJAX request to the server
+//    $.ajax({
+//        url: '/admin/deleteEmployee', 
+//        type: 'POST', 
+//        data: { empId: empId },
+//        success: function (response) {
+//            if (response.success) {
+//                showNotification("Record delete successfully.", "success")
+//            }
+//            else {
+//                showNotification("Failed to delete record", "danger")
+//            }
+//            GetEmployeeList();
+//        },
+//        error: function (xhr, status, error) {
+//            console.error('Error deleting employee:', error);
+//        }
+//    });
+//}
+
+var isAlertDisplayed = false;
+function handleChartButtonClick(selectedValue) {
+    // Check if an alert is already being displayed
+    if (isAlertDisplayed) {
+        return;
+    }
+
+    fetchEmployeeData()
+        .then(function (response) {
+            if (Array.isArray(response) && response.length > 0) {
+                renderChart(response, selectedValue);
+                if ($('#chartContainer').is(':hidden')) {
+                    $('#chartContainer').show();
+                }
+
+                if ($('#chartContainer').length > 0) {
+                    $('#confirmationModalLabel').text('Employee Data');
+                    $('#confirmActionBtn').hide();
+                }
+                $('#confirmationModal').modal('show');
+            } else {
+                // Display an alert indicating no advertisement record
+                var alertMessage = $('<div class="alert alert-danger alert-sm text-center" role="alert">No advertisement records found.</div>'); // Added alert-sm for small width
+                $('header').prepend(alertMessage);
+                isAlertDisplayed = true; // Set flag to true
+                setTimeout(function () {
+                    alertMessage.fadeOut('slow', function () {
+                        $(this).remove();
+                        isAlertDisplayed = false; // Reset flag to false
+                    });
+                }, 3000); // Hide after 3 seconds
             }
-            else {
-                showNotification("Failed to delete record", "error")
-            }
-            GetEmployeeList();
-        },
-        error: function (xhr, status, error) {
-            console.error('Error deleting employee:', error);
-        }
+        })
+        .catch(function (error) {
+            isAlertDisplayed = false; // Reset flag in case of error
+        });
+}
+
+function fetchEmployeeData() {
+    var url = ($('#loginedRole').val() === "Admin") ?
+        '/Admin/GetEmployeeList' :
+        '/Login/UserLogin';
+
+    return $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json'
     });
 }
 
+$('#confirmationModal' + ' #closeConfirmationModalBtn').on('click', function () {
+    $('#confirmationModal').modal('hide'); // Hide the modal when the close button is clicked
+});
 
+// Function to generate dropdown options and optionally show the dropdown
+function generateDropdownOptions(options, showDropdown) {
+    const dropdownMenu = document.getElementById("chartDropdownMenu");
+    dropdownMenu.innerHTML = options.map(option => `<a href="#" class="dropdown-item" data-value="${option.value}">${option.label}</a>`).join('');
+    if (showDropdown) {
+        $('#chartDropdownMenu').show();
+    } else {
+        $('#chartDropdownMenu').hide();
+    }
+}
+
+// Example data for dropdown options
+const chartOptions = [
+    { label: "Pie Chart", value: "pie" },
+    { label: "Column Chart", value: "column" }
+];
+
+// Call the function to generate dropdown options and hide the dropdown initially
+generateDropdownOptions(chartOptions, false);
+
+// Event listener for the "Show Chart" button
+document.getElementById("showChartBtn").addEventListener("click", function (event) {
+    event.stopPropagation(); // Prevent the click event from propagating to the document body
+    generateDropdownOptions(chartOptions, true); // Show the dropdown
+});
+
+// Event delegation to handle click events on dropdown items
+document.getElementById("chartDropdownMenu").addEventListener("click", function (event) {
+    const target = event.target;
+    if (target && target.matches(".dropdown-item")) {
+        const selectedValue = target.getAttribute("data-value");
+        // Call handleChartButtonClick function
+        handleChartButtonClick(selectedValue);
+        // Hide the dropdown
+        $('#chartDropdownMenu').hide();
+    }
+});
+
+function showConfirmationModal(title, message, confirmButtonText, confirmCallback, data) {
+    // Set modal title and message
+    $('#confirmationModalLabel').text(title);
+    $('#confirmationModalBody').text(message);
+    // Update confirm button text
+    $('#confirmActionBtn').text(confirmButtonText);
+    $('#confirmActionBtn').show();
+    // Store callback function and data in modal data attributes
+    $('#confirmActionBtn').data('callback', confirmCallback);
+    $('#confirmActionBtn').data('data', data);
+    $('#chartContainer').hide();
+
+    // Show the modal
+    $('#confirmationModal').modal('show');
+
+    // Bind click event to confirmation button
+    $('#confirmActionBtn').off('click').on('click', function () {
+        var callback = $(this).data('callback');
+        var data = $(this).data('data');
+        if (typeof callback === 'function') {
+            callback(data);
+        }
+        $('#confirmationModal').modal('hide');
+    });
+
+    // Bind click event to close button
+    $('#closeConfirmationModalBtn').off('click').on('click', function () {
+        $('#confirmationModal').modal('hide');
+    });
+}
+
+// Rest of your code remains the same
+
+function deleteEmployee(empId) {
+    var title = 'Confirm Delete';
+    var message = 'Are you sure you want to delete this advertisement?';
+    var confirmButtonText = 'Delete';
+    var confirmCallback = performEmployeeDelete;
+    var data = { empId: empId };
+    // Show the confirmation modal
+    showConfirmationModal(title, message, confirmButtonText, confirmCallback, data);
+}
+
+// Function to perform the advertisement delete
+function performEmployeeDelete(data) {
+    var empId = data.empId;
+    // Send AJAX request to the server to delete the advertisement
+    $.ajax({
+        url: '/admin/deleteEmployee',
+        type: 'POST',
+        data: { empId: empId },
+        success: function (response) {
+            if (response.success) {
+                showNotification("Record deleted successfully.", "success");
+            } else {
+                showNotification("Failed to delete record", "danger");
+            }
+            /*GetAdvertisementRequest();*/ // Refresh advertisement data
+        },
+        error: function (xhr, status, error) {
+        }
+    });
+}
 
 
 

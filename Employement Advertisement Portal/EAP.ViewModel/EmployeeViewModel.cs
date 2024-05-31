@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace EAP.ViewModel
 
         public string Email { get; set; } = null!;
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender Gender { get; set; }
 
         public DateTime Dob { get; set; }

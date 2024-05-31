@@ -345,7 +345,6 @@ function editAdvertisement(advId) {
 
 function renderChart(response, selectedChart) {
     var categorySet = new Set();
-    debugger
     response.forEach(function (employee) {
         employee.advertisementCategoryList.forEach(function (category) {
             categorySet.add(category.text);

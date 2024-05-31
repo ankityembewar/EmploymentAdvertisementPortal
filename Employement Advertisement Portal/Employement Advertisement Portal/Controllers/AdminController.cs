@@ -39,7 +39,8 @@ namespace Employement_Advertisement_Portal.Controllers
         public ActionResult GetEmployeeList()
         {
             List<EmployeeViewModel> employeesList = _employeeAgent.GetEmployeeList();
-            return new JsonResult(employeesList);
+            var item = new JsonResult(employeesList);
+            return item;
         }
 
         [Authorize(Roles = "Admin")]
@@ -95,6 +96,10 @@ namespace Employement_Advertisement_Portal.Controllers
         [HttpPost]
         public ActionResult EditEmployee(EmployeeViewModel employeeViewModel)
         {
+            var invalidProperties = ModelState.Where(x => x.Value.Errors.Any()).Select(x => new { Property = x.Key, Errors = x.Value.Errors.Select(e => e.ErrorMessage) });
+            ModelState.Remove("Password");
+
+
             if (!ModelState.IsValid)
             {
                 return View("Index");
