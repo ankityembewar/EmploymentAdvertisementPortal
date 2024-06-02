@@ -34,7 +34,7 @@ namespace EAP.DAL.Service.Advertisement
                 return context.AdvertisementDetailsTbls
                     .Include(x => x.AdvCategory)
                     .Include(x => x.Emp)
-                    .Where(x => x.IsApproved && x.EmpId != _helperUtility.GetEmployeeId())
+                    .Where(x => x.IsApproved)
                     .OrderByDescending(x => x.CreatedBy) // Example sorting
                     .Skip(skipCount)
                     .Take(pageSize)

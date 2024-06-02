@@ -1,10 +1,17 @@
 ﻿$(document).ready(function () {
     GetEmployeeList();
-    // Listen for changes in the dropdown menu
-    $('#chartType').on('change', function () {
-        var selectedChartType = $(this).val(); // Get the selected chart type
-        GetEmployeeList(selectedChartType); // Pass selectedChartType to GetEmployeeList
+
+    $(document).ready(function () {
+        $('#showChartBtn').click(function () {
+            $('#chartDropdown').toggle(); // Use toggle to show/hide the dropdown
+        });
     });
+
+    // Listen for changes in the dropdown menu
+    //$('#chartType').on('change', function () {
+    //    var selectedChartType = $(this).val(); // Get the selected chart type
+    //    GetEmployeeList(selectedChartType); // Pass selectedChartType to GetEmployeeList
+    //});
 
     // Function to close dropdown menu when clicking outside or clicking dropdown button again
     $(document).on('click', function (event) {
@@ -399,45 +406,19 @@ $('#confirmationModal' + ' #closeConfirmationModalBtn').on('click', function () 
     $('#confirmationModal').modal('hide'); // Hide the modal when the close button is clicked
 });
 
-// Function to generate dropdown options and optionally show the dropdown
-function generateDropdownOptions(options, showDropdown) {
-    const dropdownMenu = document.getElementById("chartDropdownMenu");
-    dropdownMenu.innerHTML = options.map(option => `<a href="#" class="dropdown-item" data-value="${option.value}">${option.label}</a>`).join('');
-    if (showDropdown) {
-        $('#chartDropdownMenu').show();
-    } else {
-        $('#chartDropdownMenu').hide();
-    }
-}
-
-// Example data for dropdown options
-const chartOptions = [
-    { label: "Pie Chart", value: "pie" },
-    { label: "Column Chart", value: "column" }
-];
-
-// Call the function to generate dropdown options and hide the dropdown initially
-generateDropdownOptions(chartOptions, false);
-
-// Event listener for the "Show Chart" button
-document.getElementById("showChartBtn").addEventListener("click", function (event) {
-    event.stopPropagation(); // Prevent the click event from propagating to the document body
-    generateDropdownOptions(chartOptions, true); // Show the dropdown
-});
-
-// Event delegation to handle click events on dropdown items
-document.getElementById("chartDropdownMenu").addEventListener("click", function (event) {
+document.getElementById("chartDropdown").addEventListener("click", function (event) {
     const target = event.target;
     if (target && target.matches(".dropdown-item")) {
         const selectedValue = target.getAttribute("data-value");
         // Call handleChartButtonClick function
         handleChartButtonClick(selectedValue);
         // Hide the dropdown
-        $('#chartDropdownMenu').hide();
+        $('#chartDropdown').hide();
     }
 });
 
 function showConfirmationModal(title, message, confirmButtonText, confirmCallback, data) {
+    $('#chartDropdown').hide();
     // Set modal title and message
     $('#confirmationModalLabel').text(title);
     $('#confirmationModalBody').text(message);
@@ -471,6 +452,7 @@ function showConfirmationModal(title, message, confirmButtonText, confirmCallbac
 // Rest of your code remains the same
 
 function deleteEmployee(empId) {
+    $('#chartDropdown').hide();
     var title = 'Confirm Delete';
     var message = 'Are you sure you want to delete this advertisement?';
     var confirmButtonText = 'Delete';
@@ -482,6 +464,7 @@ function deleteEmployee(empId) {
 
 // Function to perform the advertisement delete
 function performEmployeeDelete(data) {
+    $('#chartDropdown').hide();
     var empId = data.empId;
     // Send AJAX request to the server to delete the advertisement
     $.ajax({
@@ -494,7 +477,7 @@ function performEmployeeDelete(data) {
             } else {
                 showNotification("Failed to delete record", "danger");
             }
-            /*GetAdvertisementRequest();*/ // Refresh advertisement data
+            GetEmployeeList();
         },
         error: function (xhr, status, error) {
         }

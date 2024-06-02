@@ -39,7 +39,9 @@ namespace EAP.Core.HelperUtilities
             {
                 // Handle the situation where the claim doesn't exist or can't be parsed as an int
                 // You might throw an exception, return a default value, or handle it based on your application's requirements
-                throw new InvalidOperationException("Employee ID claim is missing or invalid.");
+                //throw new InvalidOperationException("Employee ID claim is missing or invalid.");
+                _httpContextAccessor.HttpContext.Response.Redirect("/Login/UserLogin");
+                return -1; // Return a default value or handle this case as required
             }
         }
 

@@ -21,7 +21,18 @@
 <div id="employeeListView" class="container d-flex justify-content-center align-items-center">
     <div class="card">
         <div class="card-header">
-            <h4>Employee List</h4>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Manage Employee</h4>
+                <div class="dropdown">
+                    <button class="btn btn-secondary" type="button" id="showChartBtn">
+                        Show Chart
+                    </button>
+                    <div id="chartDropdown" class="dropdown-menu" style="display:none;">
+                        <a class="dropdown-item" href="#" data-value="pie">Pie Chart</a>
+                        <a class="dropdown-item" href="#" data-value="column">Column Chart</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="container mt-4">
@@ -39,16 +50,6 @@
                                         </button>
 
                                     </div>
-                                    <div class="col-auto">
-                                        <div class="btn-group">
-                                            <button type="button" id="showChartBtn" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Show Chart
-                                            </button>
-                                            <div class="dropdown-menu" id="chartDropdownMenu">
-                                                <!-- Dropdown items will be inserted here -->
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="dropdown-menu" aria-labelledby="columnDropdown" id="columnDropdownMenu">
                                     <!-- Dropdown items will be generated dynamically via JavaScript -->
@@ -62,7 +63,8 @@
                                         <th>@Html.DisplayNameFor(x => x.LastName)</th>
                                         <th>@Html.DisplayNameFor(x => x.Email)</th>
                                         <th>@Html.DisplayNameFor(x => x.Gender)</th>
-                                        <th>@Html.Display("Role")</th>
+                                        <th>@Html.DisplayNameFor(x => x.Dob)</th>
+                                        <th>@Html.DisplayNameFor(x => x.EmployeeRole)</th>
                                         <th class="no-export">@Html.Display("Action")</th>
                                     </tr>
                                 </thead>

@@ -1,9 +1,15 @@
 ﻿$(document).ready(function () {
     GetAdvertisementRequest()
-    $('#advertisechartType').on('change', function () {
-        var selectedChartType = $(this).val(); // Get the selected chart type
-        GetAdvertisementRequest(selectedChartType); // Pass selectedChartType to GetEmployeeList
+    $(document).ready(function () {
+        $('#showChartBtn').click(function () {
+            $('#chartDropdown').toggle(); // Use toggle to show/hide the dropdown
+        });
     });
+   
+    //$('#chartType').on('change', function () {
+    //    var selectedChartType = $(this).val(); // Get the selected chart type
+    //    GetAdvertisementRequest(selectedChartType); // Pass selectedChartType to GetEmployeeList
+    //});
 
     // Function to close dropdown menu when clicking outside or clicking dropdown button again
     $(document).on('click', function (event) {
@@ -266,19 +272,44 @@ function toggleDropdownAndGenerateItems() {
 }
 
 function handleDecisionChange(rowId, decision) {
-    
+    $('#chartDropdown').hide();
+    if (decision == "approved") {
+        var data = {
+            advId: rowId, // sending rowId as advId
+            decision: decision // sending the decision
+        };
+        ActionOnAdvertisement(data);
+    }
+    else {
+        var title = 'Confirm Reject';
+        var message = 'Are you sure you want to reject this advertisement?';
+        var confirmButtonText = 'Reject';
+        var confirmCallback = ActionOnAdvertisement;
+        var data = {
+            advId: rowId, // sending rowId as advId
+            decision: decision // sending the decision
+        };
+        showConfirmationModal(title, message, confirmButtonText, confirmCallback, data);
+    }
+}
+
+function ActionOnAdvertisement(data) {
     $.ajax({
         url: '/Admin/ActionOnAdvertisement',
         type: 'POST',
         data: {
-            advId: rowId, // sending rowId as advId
-            decision: decision // sending the decision
+            advId: data.advId, // sending rowId as advId
+            decision: data.decision // sending the decision
         },
         dataType: 'json', // change 'bool' to 'json' for clarity
         success: function (response) {
             // Check if response is valid before proceeding
             if (response) {
-                showNotification("Advertisement updated successfully", "success")
+                if (data.decision === "approved")
+                    showNotification("Advertisement approved successfully", "success")
+                else {
+                    showNotification("Advertisement rejected successfully", "success")
+                }
                 /*GetAdvertisementRequest()*/
             } else {
                 showNotification("Failed to update", "error")
@@ -312,7 +343,7 @@ function handleCheckboxChange() {
     var allUnchecked = $('.columnCheckbox').filter(':checked').length === 0;
 
     if (allUnchecked) {
-        showNotification('Please ensure at least one column is visible.', "error"); // Display alert message
+        showNotification('Please ensure at least one column is visible.', "danger"); // Display alert message
     } else {
         // Toggle the visibility of the column based on checkbox state
         column.visible($(this).is(':checked'));
@@ -441,7 +472,20 @@ function renderChart(response, selectedChart) {
 
 var isAlertDisplayed = false;
 
-function handleChartButtonClick() {
+document.getElementById("chartDropdown").addEventListener("click", function (event) {
+    const target = event.target;
+    if (target && target.matches(".dropdown-item")) {
+        const selectedValue = target.getAttribute("data-value");
+        // Call handleChartButtonClick function
+        handleChartButtonClick(selectedValue);
+        // Hide the dropdown
+        $('#chartDropdown').hide();
+    }
+});
+
+function handleChartButtonClick(selectedValue) {
+
+    $('#chartDropdown').hide();
     // Check if an alert is already being displayed
     if (isAlertDisplayed) {
         return;
@@ -450,7 +494,7 @@ function handleChartButtonClick() {
     fetchAdvertisementRequestData()
         .then(function (response) {
             if (Array.isArray(response) && response.length > 0) {
-                renderChart(response, $('#advertisechartType').val());
+                renderChart(response, selectedValue);
                 if ($('#chartContainer').is(':hidden')) {
                     $('#chartContainer').show();
                 }
@@ -486,23 +530,30 @@ function fetchAdvertisementRequestData() {
         '/Admin/GetAdvertisementRequest' :
         '/Advertisement/GetUserAdvertisementList';
 
-    return $.ajax({
-        url: url,
-        type: 'GET',
-        data: ($('#loginedRole').val() === "Admin") ? {} : { empId: $('#userId').val() },
-        dataType: 'json'
-    });
+    if (url === '/Admin/GetAdvertisementRequest') {
+        return $.ajax({
+            url: url,
+            type: 'GET',
+            data: ($('#loginedRole').val() === "Admin") ? {} : { empId: $('#userId').val() },
+            dataType: 'json'
+        });
+    }
+    else {
+        return $.ajax({
+            url: url,
+            type: 'GET',
+            data: ($('#loginedRole').val() === "Admin") ? { empId: $('#userId').val() } : { empId: $('#userId').val() },
+            dataType: 'json'
+        });
+    }
+
+    
 }
-
-// Your existing JavaScript code here
-// You can place other functions or code directly here.
-
 
 $('#confirmationModal' + ' #closeConfirmationModalBtn').on('click', function () {
     $('#confirmationModal').modal('hide'); // Hide the modal when the close button is clicked
 });
 
-// Function to show a generic confirmation modal
 // Function to show a generic confirmation modal
 function showConfirmationModal(title, message, confirmButtonText, confirmCallback, data) {
     // Set modal title and message
@@ -536,8 +587,8 @@ function showConfirmationModal(title, message, confirmButtonText, confirmCallbac
 }
 
 // Rest of your code remains the same
-
 function deleteAdvertisement(advId) {
+    $('#chartDropdown').hide();
     var title = 'Confirm Delete';
     var message = 'Are you sure you want to delete this advertisement?';
     var confirmButtonText = 'Delete';
@@ -549,6 +600,7 @@ function deleteAdvertisement(advId) {
 
 // Function to perform the advertisement delete
 function performAdvertisementDelete(data) {
+    $('#chartDropdown').hide();
     var advId = data.advId;
     // Send AJAX request to the server to delete the advertisement
     $.ajax({

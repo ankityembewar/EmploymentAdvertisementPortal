@@ -34,7 +34,7 @@ namespace EAP.DAL.Service.Employee
 
             using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
-                EmployeeDetailsTbl employee = context.EmployeeDetailsTbls.Include(e=>e.Role).FirstOrDefault(x => x.Email == email);
+                EmployeeDetailsTbl employee = context.EmployeeDetailsTbls.Include(e => e.Role).FirstOrDefault(x => x.Email == email);
                 if (employee == null)
                 {
                     throw new Exception("Employee with the specified email is not found");
@@ -49,7 +49,7 @@ namespace EAP.DAL.Service.Employee
         {
             using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
             {
-                return context.EmployeeDetailsTbls.Include(e=>e.Role).FirstOrDefault(x => x.EmpId == empId);
+                return context.EmployeeDetailsTbls.Include(e => e.Role).FirstOrDefault(x => x.EmpId == empId);
             }
         }
 
@@ -80,6 +80,11 @@ namespace EAP.DAL.Service.Employee
             {
                 using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
                 {
+                    if (IsEmailExits(employee.Email))
+                    {
+                        throw new Exception("Email already exits.");
+                    }
+
                     // Map audit fields for employee
                     _helperUtility.MapAuditFields(employee, "CreatedBy", "ModifiedBy", "CreatedDate", "ModifiedDate", false);
                     string guid = Guid.NewGuid().ToString();
@@ -101,7 +106,7 @@ namespace EAP.DAL.Service.Employee
 
                     string subject = "Welcome! Here's Your Employee Account Information";
                     string body = "<html>\r\n<head>\r\n    <title>Welcome</title>\r\n</head>\r\n<body>\r\n    <h1>Welcome Aboard!</h1>\r\n    <p>We're thrilled to have you as part of our team. Your employee account has been successfully created. Below are your account details:</p>\r\n    <ul>\r\n        <li><strong>Email:</strong> " + employee.Email + "</li>\r\n    </ul>\r\n    <p>Please keep this information secure and do not share it with anyone.</p>\r\n    <p>To get started, please follow the link below to activate your account and set up your password:</p>\r\n    <a href=\"http:/localhost:5288/Login/ForgetPassword\">Activate Account</a>\r\n    <p>If you have any questions, feel free to reach out to your manager or HR department.</p>\r\n    <p>Welcome once again, and we look forward to working with you!</p>\r\n    <p>This is an automated email; please do not reply to this message.</p>\r\n</body>\r\n</html>";
-                    _helperUtility.SendEmail(employee.Email,"ankit@yopmail.com", subject, body);
+                    _helperUtility.SendEmail(employee.Email, "ankit@yopmail.com", subject, body);
                     return true;
                 }
             }
@@ -161,12 +166,28 @@ namespace EAP.DAL.Service.Employee
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
-            
+
+        }
+
+        private bool IsEmailExits(string email)
+        {
+            try
+            {
+                using (EmployeeAdvertisementPortalContext context = new EmployeeAdvertisementPortalContext())
+                {
+                    return context.EmployeeDetailsTbls.Any(x => x.Email == email);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
+
    

@@ -56,6 +56,7 @@ namespace Employement_Advertisement_Portal.Controllers
         [HttpPost]
         public ActionResult AddEmployee(EmployeeViewModel employeeViewModel)
         {
+            employeeViewModel.EmployeeRole = _employeeAgent.GetEmployeeRoleOptions();
             ModelState.Remove("Password");
             if (!ModelState.IsValid)
             {
