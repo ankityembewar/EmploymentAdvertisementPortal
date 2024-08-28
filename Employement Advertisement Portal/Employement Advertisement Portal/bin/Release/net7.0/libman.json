@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@6.5.2",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "highcharts@11.4.1",
+      "destination": "wwwroot/lib/highcharts/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "datatables.net-buttons@3.0.2",
+      "destination": "wwwroot/DataTable/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "pdfmake@0.2.10",
+      "destination": "wwwroot/DataTable/js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jszip@3.10.1",
+      "destination": "wwwroot/DataTable/js/"
+    }
+  ]
+}

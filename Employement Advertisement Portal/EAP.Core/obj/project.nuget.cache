@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JUUOO3in1O9pMRAmBsgA4iDLNJvNcNhxR5ZAM69C2j/p17XWY0MM2+BKXM4QKsA7qXMJ0/zo1B95wtuXvwcbwQ==",
+  "dgSpecHash": "gWyQ5p2MJjI=",
   "success": true,
   "projectFilePath": "D:\\PersonalProject\\EAP\\Employement Advertisement Portal\\EAP.Core\\EAP.Core.csproj",
   "expectedPackageFiles": [
@@ -171,10 +171,7 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

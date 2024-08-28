@@ -1,0 +1,63 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* CSS for the fade-out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 5s forwards; /* Apply fade-out animation */
+}
+
+/* slider.css */
+
+.slider-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Full height */
+    width: 300px; /* Adjust as needed */
+    background-color: #f8f9fa; /* Light background color */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    transition: 0.5s; /* 0.5 second transition effect to slide in/out */
+    padding-top: 60px; /* Space for the header */
+}
+
+    .slider-container.closed {
+        width: 0; /* Hide the slider by default */
+    }
+
+.slider-content {
+    padding: 20px;
+}

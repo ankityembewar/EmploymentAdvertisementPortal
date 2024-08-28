@@ -596,6 +596,7 @@ function deleteAdvertisement(advId) {
     var data = { advId: advId };
     // Show the confirmation modal
     showConfirmationModal(title, message, confirmButtonText, confirmCallback, data);
+    fetchAdvertisementRequestData();
 }
 
 // Function to perform the advertisement delete

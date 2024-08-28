@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Employement Advertisement Portal.props" />
+</Project>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\PublishProject\EAP-Project</_PublishTargetUrl>
+    <History>True|2024-06-06T02:55:28.4810619Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="EmployeeAdvertisementPortalContext">
+      <Value>Data Source=DESKTOP-7AQJSKH\MSSQLSERVER1%3bInitial Catalog=Employee_Advertisement_Portal%3bTrusted_Connection=True%3bTrust Server Certificate=True</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="EAP.Core.Data.EmployeeAdvertisementPortalContext">
+      <Value>Data Source=DESKTOP-7AQJSKH\MSSQLSERVER1%3bInitial Catalog=Employee_Advertisement_Portal%3bTrusted_Connection=True%3bTrust Server Certificate=True</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

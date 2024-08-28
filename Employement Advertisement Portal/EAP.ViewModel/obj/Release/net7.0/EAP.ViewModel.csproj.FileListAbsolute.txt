@@ -1,0 +1,13 @@
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Release\net7.0\EAP.ViewModel.deps.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Release\net7.0\EAP.ViewModel.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\bin\Release\net7.0\EAP.ViewModel.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.csproj.AssemblyReference.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.AssemblyInfoInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.AssemblyInfo.cs
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.csproj.CoreCompileInputs.cache
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.sourcelink.json
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\refint\EAP.ViewModel.dll
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\EAP.ViewModel.pdb
+D:\PersonalProject\EAP\Employement Advertisement Portal\EAP.ViewModel\obj\Release\net7.0\ref\EAP.ViewModel.dll

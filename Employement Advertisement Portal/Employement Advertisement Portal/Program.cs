@@ -23,9 +23,17 @@ var connectionString = builder.Configuration.GetConnectionString("EmployeeAdvert
 
 builder.Services.AddDbContext<EmployeeAdvertisementPortalContext>(options =>
 {
-    options.UseSqlServer(connectionString);
-    //options.UseLazyLoadingProxies();
+    options.UseSqlServer(connectionString, sqlServerOptions =>
+    {
+        sqlServerOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,         // Maximum number of retries
+            maxRetryDelay: TimeSpan.FromSeconds(30),  // Maximum delay between retries
+            errorNumbersToAdd: null    // List of error numbers to consider retrying, or null for all errors
+        );
+    });
+    // options.UseLazyLoadingProxies();
 });
+
 
 // Configure CORS
 builder.Services.AddCors(options =>
